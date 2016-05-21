@@ -11,4 +11,10 @@ import org.apache.pivot.wtk.Window;
  */
 public class JDex {
 
+  /**
+   * Placeholder main
+   */
+  public static void main(String[] args) {
+    System.out.println("Hello World");
+  }
 }
