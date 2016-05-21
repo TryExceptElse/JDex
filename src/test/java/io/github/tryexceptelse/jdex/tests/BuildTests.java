@@ -8,7 +8,7 @@ import org.junit.Test;
 /**
  * Simply test that project is able to be built correctly.
  */
-public class BuildTest {
+public class BuildTests {
 
  /**
   * As a placeholder, this test should simply return true if the build
