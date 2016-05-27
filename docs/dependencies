@@ -1,4 +1,5 @@
 builtin packages:
+List of imports made in classes
 
     import javafx.application.Application;
     import javafx.collections.FXCollections;
@@ -6,3 +7,7 @@ builtin packages:
     import javafx.scene.Parent;
     import javafx.scene.Scene;
     import javafx.stage.Stage;
+
+junit version 4.12:
+
+    import org.junit.Test;
