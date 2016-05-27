@@ -4,7 +4,6 @@ package io.github.tryexceptelse.jdex;
  */
 public class Contact
 {
-    //test
     private String first;
     private String last;
     private String email;
