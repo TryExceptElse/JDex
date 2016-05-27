@@ -10,7 +10,8 @@ public class Contact
     private String streetAddr;
     private String phoneNumber;
     private String notes;
-    public void Contact(String newFirst, String newLast, String newEmail, String newStreetAddr, String newPhoneNumber,String newNotes)
+    public void Contact(String newFirst, String newLast, String newEmail,
+                        String newStreetAddr, String newPhoneNumber,String newNotes)
     {
         first=newFirst;
         last=newLast;
