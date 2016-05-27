@@ -7,7 +7,7 @@ package io.github.tryexceptelse.jdex.be;
 interface IContact {
     void setFirst(String newFirst);
     void setLast(String newLast);
-    void setEmai(String newEmail);
+    void setEmail(String newEmail);
     void setStreetAddr(String newStreetAddr);
     void setPhoneNumber(String newPhoneNumber);
     void setNotes(String newNotes);
