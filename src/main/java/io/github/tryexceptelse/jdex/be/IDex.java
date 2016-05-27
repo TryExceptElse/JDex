@@ -11,7 +11,7 @@ public interface IDex
     ArrayList getList();
 
     //will return Contact after adding it to list
-    Contact addContact();
+    Contact addContact(String first, String last, String email, String streetAddr, String phone, String notes);
 
     //returns list containing contacts that meet requirements
     ArrayList search(String first, String last, String email, String streetAddr, String phone);

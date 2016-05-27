@@ -31,7 +31,7 @@ public class Contact
     {
         last=newLast;
     }
-    public void setEmai(String newEmail)
+    public void setEmail(String newEmail)
     {
         email=newEmail;
     }
@@ -70,7 +70,7 @@ public class Contact
     {
         return phoneNumber;
     }
-    public String getnotes()
+    public String getNotes()
     {
         return notes;
     }

@@ -12,15 +12,6 @@ import javafx.stage.Stage;
 public class AppWindow extends Application {
 
     /**
-     * Constructor for AppWindow
-     * sets up main window
-     * @param args: Runtime args
-     */
-    public AppWindow(String[] args) {
-        launch(args);
-    }
-
-    /**
      * startup method run when window is launched
      * @param primaryStage: Staging for window
      */

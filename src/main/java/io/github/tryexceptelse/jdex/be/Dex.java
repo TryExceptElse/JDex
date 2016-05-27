@@ -12,7 +12,7 @@ public class Dex implements IDex
         return null;
     }
 
-    public Contact addContact()
+    public Contact addContact(String first, String last, String email, String streetAddr, String phone, String notes)
     {
         return null;
     }
