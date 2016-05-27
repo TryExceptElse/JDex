@@ -1,19 +1,7 @@
 package io.github.tryexceptelse.jdex.be;
 
-import java.util.ArrayList;
-
 /**
- * Java Rolodex interface
+ * Placeholder Dex object. Replace this with a class implementing IDex.
  */
-public interface Dex {
-
-    ArrayList getList();
-
-    Contact addContact();
-
-    ArrayList search(String first, String last, String email, String streetAddr, String phone);
-
-    void save(String address);
-
-    void load(String address);
+public class Dex {
 }
