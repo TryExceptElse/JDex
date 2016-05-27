@@ -1,7 +1,8 @@
 package io.github.tryexceptelse.jdex.be;
 
 /**
- * Created by Entreri on 5/27/16.
+ * IContact to be stored in IDex
  */
-public interface IContact {
+interface IContact {
+
 }
