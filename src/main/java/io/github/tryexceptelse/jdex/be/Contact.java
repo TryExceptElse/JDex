@@ -57,7 +57,7 @@ public class Contact
     {
         return last;
     }
-    public String getEamil()
+    public String getEmail()
     {
         return email;
     }
