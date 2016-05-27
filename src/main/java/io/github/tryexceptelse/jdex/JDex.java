@@ -21,7 +21,17 @@ public class JDex {
   private Settings settings;
   private Dex dex; // should be imported from backend once available
 
-  public static void main(String[] args) {}
+  /**
+   * Constructor for JDex main class.
+   * Builds JDex object and gets it ready to be run by main loop
+   */
+  public JDex(){} //skeleton
+
+  /**
+   * Constructs a JDex main object and calls it in the main loop
+   * @param args: Runtime args
+   */
+  public static void main(String[] args) {} //skeleton
 
   /**
    * Gets user interface object
@@ -76,6 +86,8 @@ public class JDex {
    * @return Settings: Settings object
    */
   private Settings buildSettings(){
+    // placeholder: final version should try to load settings from file,
+    // if that fails, then construct default.
     return new Settings();
   }
 
@@ -84,6 +96,9 @@ public class JDex {
    * @return IDex: Created rolodex object
    */
   private Dex buildDex() {
+    // placeholder: should check settings for the last save,
+    // and load that if possible. If none exists, or error is raised,
+    // construct new
     return new Dex();
   }
 
@@ -92,7 +107,8 @@ public class JDex {
    * @return Ui: User Interface object
    */
   private Ui buildUi(){
-    return new Gui();
+    return new Gui(this); //placeholder.
+      // Should first check settings for type of GUI
   }
 
 }
