@@ -1,4 +1,4 @@
-package io.github.tryexceptelse.jdex.fe;/**
+package io.github.tryexceptelse.jdex.fe.gui;/**
  * Application Window
  */
 
@@ -11,7 +11,12 @@ import javafx.stage.Stage;
 
 public class AppWindow extends Application {
 
-    public static void main(String[] args) {
+    /**
+     * Constructor for AppWindow
+     * sets up main window
+     * @param args: Runtime args
+     */
+    public AppWindow(String[] args) {
         launch(args);
     }
 

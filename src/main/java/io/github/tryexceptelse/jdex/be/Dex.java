@@ -1,7 +1,5 @@
 package io.github.tryexceptelse.jdex.be;
 
-import io.github.tryexceptelse.jdex.Contact;
-
 import java.util.ArrayList;
 
 /**

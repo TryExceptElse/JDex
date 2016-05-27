@@ -1,4 +1,4 @@
-package io.github.tryexceptelse.jdex;
+package io.github.tryexceptelse.jdex.be;
 /*
  * one object of this class represents one contact to be added to the list storing contacts.
  */

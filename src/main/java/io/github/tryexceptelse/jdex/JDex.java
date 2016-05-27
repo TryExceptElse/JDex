@@ -2,7 +2,7 @@
 package io.github.tryexceptelse.jdex;
 
 import io.github.tryexceptelse.jdex.fe.Ui;
-import io.github.tryexceptelse.jdex.fe.Gui;
+import io.github.tryexceptelse.jdex.fe.gui.Gui;
 import io.github.tryexceptelse.jdex.be.Dex;
 
 /**

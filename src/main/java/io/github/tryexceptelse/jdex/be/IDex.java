@@ -1,7 +1,5 @@
 package io.github.tryexceptelse.jdex.be;
 
-import io.github.tryexceptelse.jdex.Contact;
-
 import java.util.ArrayList;
 
 /**
@@ -9,13 +7,13 @@ import java.util.ArrayList;
  */
 public interface IDex
 {
-    //will return all objects containted in ArrayList
+    //will return all objects contained in ArrayList
     ArrayList getList();
 
     //will return Contact after adding it to list
     Contact addContact();
 
-    //returns list containg contacts that meet requirements
+    //returns list containing contacts that meet requirements
     ArrayList search(String first, String last, String email, String streetAddr, String phone);
 
     //will serialize ArrayList
