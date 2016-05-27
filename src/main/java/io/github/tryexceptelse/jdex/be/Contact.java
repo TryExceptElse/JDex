@@ -65,7 +65,7 @@ public class Contact
     {
         return streetAddr;
     }
-    public String getPhoneNumber() 
+    public String getPhoneNumber()
     {
         return phoneNumber;
     }
