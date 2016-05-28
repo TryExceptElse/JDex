@@ -1,6 +1,7 @@
-package io.github.tryexceptelse.jdex.fe;
+package io.github.tryexceptelse.jdex.fe.gui;
 
 import io.github.tryexceptelse.jdex.JDex;
+import io.github.tryexceptelse.jdex.fe.Ui;
 
 /**
  * Graphic User Interface. extends Ui

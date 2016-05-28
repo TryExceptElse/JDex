@@ -2,7 +2,10 @@
 package io.github.tryexceptelse.jdex;
 
 import io.github.tryexceptelse.jdex.fe.Ui;
-import io.github.tryexceptelse.jdex.fe.Gui;
+import io.github.tryexceptelse.jdex.fe.gui.MainCont;
+import io.github.tryexceptelse.jdex.fe.gui.AppWindow;
+import io.github.tryexceptelse.jdex.fe.gui.Gui;
+import io.github.tryexceptelse.jdex.be.Contact;
 import io.github.tryexceptelse.jdex.be.Dex;
 
 /**
@@ -32,7 +35,61 @@ public class JDex {
    * Constructs a JDex main object and calls it in the main loop
    * @param args: Runtime args
    */
-  public static void main(String[] args) {} //skeleton
+  public static void main(String[] args) {
+      // Skeleton test
+      JDex jDexTest = new JDex();
+      Settings testSettings = new Settings();
+      Contact testContact = new Contact();
+      Dex testDex = new Dex();
+      Gui testGui = new Gui(jDexTest);
+      MainCont testMainCont = new MainCont();
+      AppWindow testAppWindow = new AppWindow();
+
+      jDexTest.setDex(testDex);
+      jDexTest.getDex();
+      jDexTest.setSettings(testSettings);
+      jDexTest.getSettings();
+      jDexTest.setUi(testGui);
+      jDexTest.getUi();
+      jDexTest.buildDex();
+      jDexTest.buildSettings();
+      jDexTest.buildUi();
+
+      testSettings.setAutoSaveLoc("test/location/a");
+      testSettings.getAutoSaveLoc();
+      testSettings.setDefaultSaveLoc("test/location/b");
+      testSettings.getDefaultSaveLoc();
+      testSettings.setLastSavedFile("test/location/c");
+      testSettings.getLastSavedFile();
+
+      testContact.setFirst("first");
+      testContact.getFirst();
+      testContact.setLast("last");
+      testContact.getLast();
+      testContact.setEmail("email string");
+      testContact.getEmail();
+      testContact.setStreetAddr("address");
+      testContact.getstreetAddr();
+      testContact.setPhoneNumber("phone");
+      testContact.getPhoneNumber();
+      testContact.setNotes("note");
+      testContact.getNotes();
+
+      testDex.getList();
+      testDex.addContact("first", "last", "email", "street address", "phone", "note");
+      testDex.save("save address");
+      testDex.load("load address");
+      testDex.search("first", "last", "email", "street address", "phone");
+
+      testGui.run(args);
+
+      testMainCont.newDex();
+      testMainCont.save();
+      testMainCont.saveAs();
+      testMainCont.load();
+
+      System.out.println("Skeleton test completed");
+  }
 
   /**
    * Gets user interface object

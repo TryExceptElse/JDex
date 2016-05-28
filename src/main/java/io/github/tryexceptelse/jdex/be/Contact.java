@@ -1,4 +1,4 @@
-package io.github.tryexceptelse.jdex;
+package io.github.tryexceptelse.jdex.be;
 /*
  * one object of this class represents one contact to be added to the list storing contacts.
  */
@@ -10,7 +10,8 @@ public class Contact
     private String streetAddr;
     private String phoneNumber;
     private String notes;
-    public void Contact(String newFirst, String newLast, String newEmail, String newStreetAddr, String newPhoneNumber,String newNotes)
+    public void Contact(String newFirst, String newLast, String newEmail,
+                        String newStreetAddr, String newPhoneNumber,String newNotes)
     {
         first=newFirst;
         last=newLast;
@@ -30,7 +31,7 @@ public class Contact
     {
         last=newLast;
     }
-    public void setEmai(String newEmail)
+    public void setEmail(String newEmail)
     {
         email=newEmail;
     }
@@ -69,7 +70,7 @@ public class Contact
     {
         return phoneNumber;
     }
-    public String getnotes()
+    public String getNotes()
     {
         return notes;
     }

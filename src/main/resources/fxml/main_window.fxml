@@ -10,11 +10,13 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 
-<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="512.0" prefWidth="1024.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="512.0" prefWidth="1024.0"
+            xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="io.github.tryexceptelse.jdex.fe.gui.MainCont">
     <children>
         <ToolBar AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
             <items>
-                <Button mnemonicParsing="false" text="New">
+                <Button fx:id="new_button" mnemonicParsing="false" text="New">
                     <tooltip>
                         <Tooltip text="Create new contacts list" />
                     </tooltip>
@@ -25,7 +27,7 @@
                             </image>
                         </ImageView>
                     </graphic></Button>
-                <Button mnemonicParsing="false" text="Save">
+                <Button fx:id="save_button" mnemonicParsing="false" text="Save">
                     <tooltip>
                         <Tooltip text="Save contacts list" />
                     </tooltip>
@@ -36,7 +38,7 @@
                             </image>
                         </ImageView>
                     </graphic></Button>
-                <Button mnemonicParsing="false" text="Save As">
+                <Button fx:id="save_as_button" mnemonicParsing="false" text="Save As">
                     <tooltip>
                         <Tooltip text="Save a copy of contacts as..." />
                     </tooltip>
@@ -47,7 +49,7 @@
                             </image>
                         </ImageView>
                     </graphic></Button>
-                <Button mnemonicParsing="false" text="Load">
+                <Button fx:id="load_button" mnemonicParsing="false" text="Load">
                     <tooltip>
                         <Tooltip text="Load a contacts list" />
                     </tooltip>
@@ -72,7 +74,7 @@
         </TableView>
       <ToolBar layoutY="494.0" prefHeight="28.0" prefWidth="1024.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <items>
-            <Label prefHeight="16.0" prefWidth="512.0" text="Placeholder Text" textAlignment="CENTER" />
+            <Label fx:id="message_label" prefHeight="16.0" prefWidth="512.0" text="Placeholder Text" textAlignment="CENTER" />
          </items>
       </ToolBar>
     </children>
