@@ -7,7 +7,6 @@ import io.github.tryexceptelse.jdex.fe.gui.AppWindow;
 import io.github.tryexceptelse.jdex.fe.gui.Gui;
 import io.github.tryexceptelse.jdex.be.Contact;
 import io.github.tryexceptelse.jdex.be.Dex;
-import jdk.nashorn.internal.scripts.JD;
 
 import java.io.File;
 
