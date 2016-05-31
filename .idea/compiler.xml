@@ -22,10 +22,11 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
-        <module name="JDex" />
+        <module name="jdex" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
+      <module name="jdex" target="1.8" />
       <module name="JDex" target="1.8" />
     </bytecodeTargetLevel>
   </component>
