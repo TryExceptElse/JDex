@@ -1,77 +1,66 @@
 package io.github.tryexceptelse.jdex.be;
-/*
+import java.io.Serializable;
+import java.util.HashMap;
+/**
  * one object of this class represents one contact to be added to the list storing contacts.
+ * This class was written by Marcus Edholm
  */
-public class Contact
+public class Contact implements IContact, Serializable
 {
-    private String first;
-    private String last;
-    private String email;
-    private String streetAddr;
-    private String phoneNumber;
-    private String notes;
-    public void Contact(String newFirst, String newLast, String newEmail,
-                        String newStreetAddr, String newPhoneNumber,String newNotes)
-    {
-        first=newFirst;
-        last=newLast;
-        email=newEmail;
-        streetAddr=newStreetAddr;
-        phoneNumber=newPhoneNumber;
-        notes=newNotes;
-    }
-    /*
-     * the following methods can be called to set set the variable of the same name
+    private HashMap<String, String> entries = new HashMap<>();;
+
+    /**
+     * Default constructor for Contact.
      */
-    public void setFirst(String newFirst)
+    public Contact()
     {
-        first=newFirst;
+
     }
-    public void setLast(String newLast)
-    {
-        last=newLast;
-    }
-    public void setEmail(String newEmail)
-    {
-        email=newEmail;
-    }
-    public void setStreetAddr(String newStreetAddr)
-    {
-        streetAddr=newStreetAddr;
-    }
-    public void setPhoneNumber(String newPhoneNumber)
-    {
-        phoneNumber=newPhoneNumber;
-    }
-    public void setNotes(String newNotes)
-    {
-        notes=newNotes;
-    }
-    /*
-     * the following methods can be called to get variables of the same name
+
+    /**
+     * Contact constructor will set key and values. Value will contain all of the data.
+     * @param entries:  data entries for contact to be created with
      */
-    public String getFirst()
+    public Contact(HashMap<String, String> entries)
     {
-        return first;
+        this.entries=entries;
     }
-    public String getLast()
+
+    /**
+     * How to change the key for an object
+     * @param key: What the key for the contact will be
+     * @param value: All of the parameters to be stored will be.
+     */
+    public void setKey(String key, String value)
     {
-        return last;
+        entries.put(key,value);
     }
-    public String getEmail()
+
+    /**
+     *
+     * @param key: key to retrieve data with
+     * @return: will return value stored at key
+     */
+    public String getEntry(String key)
     {
-        return email;
+        return entries.get(key);
     }
-    public String getstreetAddr()
+
+    /**
+     * 
+     * @return: will return a string with each key and the value corresponding to the key for the object.
+     */
+    public String toString()
     {
-        return streetAddr;
+        String nameString = "{";
+        for (String key:entries.keySet())
+        {
+            if (nameString.length() == 1) nameString += ", ";
+            String value = entries.get(key);
+            nameString+=key + ": " + value;
+        }
+        nameString += "}";
+        return nameString;
     }
-    public String getPhoneNumber()
-    {
-        return phoneNumber;
-    }
-    public String getNotes()
-    {
-        return notes;
-    }
+
 }

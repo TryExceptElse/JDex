@@ -1,6 +1,7 @@
 package io.github.tryexceptelse.jdex.be;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Java Rolodex interface
@@ -11,10 +12,10 @@ public interface IDex
     ArrayList getList();
 
     //will return Contact after adding it to list
-    Contact addContact(String first, String last, String email, String streetAddr, String phone, String notes);
+    Contact addContact(HashMap<String, String> entries);
 
     //returns list containing contacts that meet requirements
-    ArrayList search(String first, String last, String email, String streetAddr, String phone);
+    ArrayList search(HashMap<String, String> entries);
 
     //will serialize ArrayList
     void save(String address);

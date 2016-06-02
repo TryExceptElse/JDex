@@ -32,13 +32,13 @@ public class MainCont implements Initializable {
     public void save(){} //skeleton
 
     /**
-     * Opens save-as dialogue, then instructs Dex to save to location inputted
+     * Opens save-as dialogue, then instructs Rolodex to save to location inputted
      * user
      */
     public void saveAs(){} //skeleton
 
     /**
-     * Opens load dialogue, then loads the Dex from the location inputted
+     * Opens load dialogue, then loads the Rolodex from the location inputted
      */
     public void load(){} //skeleton
 }

@@ -1,12 +1,13 @@
-
 package io.github.tryexceptelse.jdex;
 
+import io.github.tryexceptelse.jdex.be.Rolodex;
 import io.github.tryexceptelse.jdex.fe.Ui;
 import io.github.tryexceptelse.jdex.fe.gui.MainCont;
 import io.github.tryexceptelse.jdex.fe.gui.AppWindow;
 import io.github.tryexceptelse.jdex.fe.gui.Gui;
 import io.github.tryexceptelse.jdex.be.Contact;
-import io.github.tryexceptelse.jdex.be.Dex;
+
+import java.util.HashMap;
 
 /**
  * Placeholder java file with imports to test that Maven handles dependencies properly
@@ -23,7 +24,7 @@ public class JDex {
 
   private Ui ui;
   private Settings settings;
-  private Dex dex; // should be imported from backend once available
+  private Rolodex rolodex; // should be imported from backend once available
 
   /**
    * Constructor for JDex main class.
@@ -40,13 +41,13 @@ public class JDex {
       JDex jDexTest = new JDex();
       Settings testSettings = new Settings();
       Contact testContact = new Contact();
-      Dex testDex = new Dex();
+      Rolodex testRolodex = new Rolodex();
       Gui testGui = new Gui(jDexTest);
       MainCont testMainCont = new MainCont();
       AppWindow testAppWindow = new AppWindow();
 
-      jDexTest.setDex(testDex);
-      jDexTest.getDex();
+      jDexTest.setRolodex(testRolodex);
+      jDexTest.getRolodex();
       jDexTest.setSettings(testSettings);
       jDexTest.getSettings();
       jDexTest.setUi(testGui);
@@ -62,24 +63,18 @@ public class JDex {
       testSettings.setLastSavedFile("test/location/c");
       testSettings.getLastSavedFile();
 
-      testContact.setFirst("first");
-      testContact.getFirst();
-      testContact.setLast("last");
-      testContact.getLast();
-      testContact.setEmail("email string");
-      testContact.getEmail();
-      testContact.setStreetAddr("address");
-      testContact.getstreetAddr();
-      testContact.setPhoneNumber("phone");
-      testContact.getPhoneNumber();
-      testContact.setNotes("note");
-      testContact.getNotes();
+      testContact.setKey("testKey", "testValue");
+      testContact.getEntry("testKey");
 
-      testDex.getList();
-      testDex.addContact("first", "last", "email", "street address", "phone", "note");
-      testDex.save("save address");
-      testDex.load("load address");
-      testDex.search("first", "last", "email", "street address", "phone");
+      testRolodex.getList();
+      testRolodex.addContact(new HashMap<String, String>(){{
+          put("key1", "value1");
+      }});
+      testRolodex.save("save address");
+      testRolodex.load("load address");
+      testRolodex.search(new HashMap<String, String>(){{
+          put("key1", "value1");
+      }});
 
       testGui.run(args);
 
@@ -127,16 +122,16 @@ public class JDex {
    * Gets currently active rolodex object
    * @return IDex: Active IDex object
    */
-  public Dex getDex() {
-    return dex;
+  public Rolodex getRolodex() {
+    return rolodex;
   }
 
   /**
    * Sets active rolodex object to new IDex
-   * @param dex: New Rolodex object to be used
+   * @param rolodex: New Rolodex object to be used
    */
-  public void setDex(Dex dex) {
-    this.dex = dex;
+  public void setRolodex(Rolodex rolodex) {
+    this.rolodex = rolodex;
   }
 
   /**
@@ -153,11 +148,11 @@ public class JDex {
    * builds rolodex object with information from settings
    * @return IDex: Created rolodex object
    */
-  private Dex buildDex() {
+  private Rolodex buildDex() {
     // placeholder: should check settings for the last save,
     // and load that if possible. If none exists, or error is raised,
     // construct new
-    return new Dex();
+    return new Rolodex();
   }
 
   /**
