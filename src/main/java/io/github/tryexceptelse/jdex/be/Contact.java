@@ -45,6 +45,11 @@ public class Contact implements IContact, Serializable
     {
         return entries.get(key);
     }
+
+    /**
+     * 
+     * @return: will return a string with each key and the value corresponding to the key for the object.
+     */
     public String toString()
     {
         String nameString = "{";

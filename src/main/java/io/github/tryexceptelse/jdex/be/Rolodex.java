@@ -40,7 +40,6 @@ public class Rolodex implements IDex
     {
         return null;
     }
-
     /**
      * will serialize ArrayList.
      */
