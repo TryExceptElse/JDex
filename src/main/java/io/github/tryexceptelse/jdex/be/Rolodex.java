@@ -91,5 +91,3 @@ public class Rolodex implements IRolodex
     public ArrayList<Contact> loadContacts(){
         // placeholder. ArrayList of Contacts should be loaded from contactsFile.
         return new ArrayList<>();
-    }
-}
