@@ -11,7 +11,7 @@ import java.util.ResourceBundle;
 public class MainCont implements Initializable {
 
     /**
-     * Method called by FXMLLoader when initialization is completed
+     * Method called by FXMLLoader when initialization is completed.
      * @param fxmlFileLocation: Location of fxml file
      * @param resources: Resource bundle
      */
@@ -41,4 +41,8 @@ public class MainCont implements Initializable {
      * Opens load dialogue, then loads the Dex from the location inputted
      */
     public void load(){} //skeleton
+
+    /**
+     * Called by GUI on user quit event, saves program and ends program execution
+     */
 }

@@ -8,8 +8,11 @@ import io.github.tryexceptelse.jdex.fe.gui.Gui;
 import io.github.tryexceptelse.jdex.be.Contact;
 import io.github.tryexceptelse.jdex.be.Dex;
 
+import java.io.File;
+
 /**
- * Placeholder java file with imports to test that Maven handles dependencies properly
+ * Main program class. holds settings, Ui, and Contact Rolodex objects,
+ * and makes calls to run the user interface each program loop.
  *
  * project notes:
  * SDK version 1.8
@@ -17,12 +20,8 @@ import io.github.tryexceptelse.jdex.be.Dex;
  */
 public class JDex {
 
-  /**
-   * Placeholder main
-   */
-
-  private Ui ui;
-  private Settings settings;
+  private String[] runtimeArgs;
+  private Ui ui; // User interface object
   private Dex dex; // should be imported from backend once available
 
   /**
@@ -38,29 +37,20 @@ public class JDex {
   public static void main(String[] args) {
       // Skeleton test
       JDex jDexTest = new JDex();
-      Settings testSettings = new Settings();
       Contact testContact = new Contact();
       Dex testDex = new Dex();
-      Gui testGui = new Gui(jDexTest);
+      Gui testGui = new Gui(jDexTest, args);
       MainCont testMainCont = new MainCont();
-      AppWindow testAppWindow = new AppWindow();
+      AppWindow testAppWindow = new AppWindow(); // the methods of this class
+      // cannot be skeleton tested since they inherit code from Application
+      // which expects inputs not yet available
 
       jDexTest.setDex(testDex);
       jDexTest.getDex();
-      jDexTest.setSettings(testSettings);
-      jDexTest.getSettings();
       jDexTest.setUi(testGui);
       jDexTest.getUi();
       jDexTest.buildDex();
-      jDexTest.buildSettings();
       jDexTest.buildUi();
-
-      testSettings.setAutoSaveLoc("test/location/a");
-      testSettings.getAutoSaveLoc();
-      testSettings.setDefaultSaveLoc("test/location/b");
-      testSettings.getDefaultSaveLoc();
-      testSettings.setLastSavedFile("test/location/c");
-      testSettings.getLastSavedFile();
 
       testContact.setFirst("first");
       testContact.getFirst();
@@ -89,6 +79,11 @@ public class JDex {
       testMainCont.load();
 
       System.out.println("Skeleton test completed");
+
+      // Output:
+      /*
+      Skeleton test completed
+      */
   }
 
   /**
@@ -108,22 +103,6 @@ public class JDex {
   }
 
   /**
-   * Gets settings object used by main
-   * @return Settings: Active program settings
-   */
-  public Settings getSettings() {
-    return settings;
-  }
-
-  /**
-   * Sets program settings
-   * @param settings: New settings object to be used by program
-   */
-  public void setSettings(Settings settings) {
-    this.settings = settings;
-  }
-
-  /**
    * Gets currently active rolodex object
    * @return IDex: Active IDex object
    */
@@ -137,16 +116,6 @@ public class JDex {
    */
   public void setDex(Dex dex) {
     this.dex = dex;
-  }
-
-  /**
-   * builds settings object from config file
-   * @return Settings: Settings object
-   */
-  private Settings buildSettings(){
-    // placeholder: final version should try to load settings from file,
-    // if that fails, then construct default.
-    return new Settings();
   }
 
   /**
@@ -165,7 +134,7 @@ public class JDex {
    * @return Ui: User Interface object
    */
   private Ui buildUi(){
-    return new Gui(this); //placeholder.
+    return new Gui(this, runtimeArgs); //placeholder.
       // Should first check settings for type of GUI
   }
 

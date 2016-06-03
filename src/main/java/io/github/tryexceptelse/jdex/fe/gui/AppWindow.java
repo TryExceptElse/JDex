@@ -1,6 +1,4 @@
-package io.github.tryexceptelse.jdex.fe.gui;/**
- * Application Window
- */
+package io.github.tryexceptelse.jdex.fe.gui;
 
 import javafx.application.Application;
 import javafx.collections.FXCollections;  // observable list
@@ -9,6 +7,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * Application Window
+ */
 public class AppWindow extends Application {
 
     /**
