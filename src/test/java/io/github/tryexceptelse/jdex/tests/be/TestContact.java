@@ -39,13 +39,4 @@ public class TestContact extends TestCase{
         TestCase.assertEquals(contact.getEntry("newEntry1"), newEntry1);
         TestCase.assertEquals(contact.getEntry("newEntry2"), newEntry2);
     }
-
-    public void testEntriesInContactCanBeOverwrittenTest(){
-        ContactEntry newEntry1 = Mockito.mock(ContactEntry.class);
-        ContactEntry newEntry2 = Mockito.mock(ContactEntry.class);
-        contact.setEntry("entry1", newEntry1);
-        TestCase.assertEquals(newEntry1, contact.getEntry("entry1"));
-        contact.setEntry("entry1", newEntry2);
-        TestCase.assertEquals(newEntry2, contact.getEntry("entry1"));
-    }
 }
