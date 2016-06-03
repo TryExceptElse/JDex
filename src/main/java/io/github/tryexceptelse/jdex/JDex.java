@@ -1,14 +1,22 @@
 
 package io.github.tryexceptelse.jdex;
 
+import io.github.tryexceptelse.jdex.be.Contact;
+import io.github.tryexceptelse.jdex.be.entries.*;
 import io.github.tryexceptelse.jdex.fe.Ui;
-import io.github.tryexceptelse.jdex.fe.gui.MainCont;
 import io.github.tryexceptelse.jdex.fe.gui.AppWindow;
 import io.github.tryexceptelse.jdex.fe.gui.Gui;
-import io.github.tryexceptelse.jdex.be.Contact;
-import io.github.tryexceptelse.jdex.be.Dex;
+import io.github.tryexceptelse.jdex.be.IRolodex;
+import io.github.tryexceptelse.jdex.be.Rolodex;
+import io.github.tryexceptelse.jdex.fe.gui.MainCont;
+import io.github.tryexceptelse.jdex.fe.gui.handlers.MessageBarHandler;
+import io.github.tryexceptelse.jdex.fe.gui.handlers.NewContactHandler;
+import io.github.tryexceptelse.jdex.fe.gui.handlers.SearchHandler;
+import io.github.tryexceptelse.jdex.fe.gui.handlers.TableHandler;
 
 import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 /**
  * Main program class. holds settings, Ui, and Contact Rolodex objects,
@@ -16,78 +24,202 @@ import java.io.File;
  *
  * project notes:
  * SDK version 1.8
- *
+ * requires Java 8 or higher to run
  */
 public class JDex {
 
   private String[] runtimeArgs;
   private Ui ui; // User interface object
-  private Dex dex; // should be imported from backend once available
+  private IRolodex rolodex; // should be imported from backend once available
+  private final File contactsFile = buildContactsFile();
 
   /**
    * Constructor for JDex main class.
    * Builds JDex object and gets it ready to be run by main loop
    */
-  public JDex(){} //skeleton
+  public JDex(String[] runtimeArgs) {
+    this.runtimeArgs = runtimeArgs;
+    rolodex = buildRolodex();
+    ui = buildUi();
+  }
 
   /**
    * Constructs a JDex main object and calls it in the main loop
+   *
    * @param args: Runtime args
    */
   public static void main(String[] args) {
-      // Skeleton test
-      JDex jDexTest = new JDex();
-      Contact testContact = new Contact();
-      Dex testDex = new Dex();
-      Gui testGui = new Gui(jDexTest, args);
-      MainCont testMainCont = new MainCont();
-      AppWindow testAppWindow = new AppWindow(); // the methods of this class
-      // cannot be skeleton tested since they inherit code from Application
-      // which expects inputs not yet available
+      //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // CONSTRUCTORS
+      //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      //
+      // Main object:
+      //
+      JDex JDexTest = new JDex(args);
+      //
+      // Backend Objects:
+      //
+      Contact contactTest = new Contact();
+      Rolodex rolodexTest = new Rolodex();
+      //
+      // ContactEntries:
+      //
+      ContactEntry contactNotesTest = new ContactNotes();
+      ContactEntry emailAddressTest = new EmailAddress();
+      ContactEntry firstNameTest = new FirstName();
+      ContactEntry lastNameTest = new LastName();
+      ContactEntry phoneNumberTest = new PhoneNumber();
+      ContactEntry streetAddressTest = new StreetAddress();
+      //
+      // Frontend Objects:
+      //
+      AppWindow appWindowTest = new AppWindow();
+      Gui guiTest = new Gui(JDexTest);
+      MainCont mainContTest = new MainCont();
+      //
+      // User interface action handlers
+      //
+      MessageBarHandler messageBarHandlerTest = new MessageBarHandler(mainContTest);
+      NewContactHandler newContactHandlerTest = new NewContactHandler(mainContTest);
+      SearchHandler searchHandlerTest = new SearchHandler(mainContTest);
+      TableHandler tableHandlerTest = new TableHandler(mainContTest);
+      
+      //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // METHODS
+      //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-      jDexTest.setDex(testDex);
-      jDexTest.getDex();
-      jDexTest.setUi(testGui);
-      jDexTest.getUi();
-      jDexTest.buildDex();
-      jDexTest.buildUi();
+      //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+      // JDex Methods
+      JDexTest.setUi(guiTest);
+      JDexTest.getUi();
+      JDexTest.setRolodex(rolodexTest);
+      JDexTest.getRolodex();
+      JDexTest.getRuntimeArgs();
+      JDexTest.buildUi();
+      JDexTest.buildContactsFile();
+      JDexTest.buildRolodex();
 
-      testContact.setFirst("first");
-      testContact.getFirst();
-      testContact.setLast("last");
-      testContact.getLast();
-      testContact.setEmail("email string");
-      testContact.getEmail();
-      testContact.setStreetAddr("address");
-      testContact.getstreetAddr();
-      testContact.setPhoneNumber("phone");
-      testContact.getPhoneNumber();
-      testContact.setNotes("note");
-      testContact.getNotes();
+      // Contact Methods
+      contactTest.setEntry("testKey", contactNotesTest);
+      contactTest.getEntry("testKey");
 
-      testDex.getList();
-      testDex.addContact("first", "last", "email", "street address", "phone", "note");
-      testDex.save("save address");
-      testDex.load("load address");
-      testDex.search("first", "last", "email", "street address", "phone");
+      // Rolodex Methods
+      rolodexTest.saveContacts();
+      rolodexTest.loadContacts();
+      rolodexTest.setContacts(new ArrayList<>());
+      rolodexTest.getContacts();
+      rolodexTest.search(new HashMap<>());
 
-      testGui.run(args);
+      // ContactNotes methods
+      contactNotesTest.checkStringIsValid("String");
+      contactNotesTest.getEntryString();
+      contactNotesTest.equals(emailAddressTest);
+      contactNotesTest.checkHasValidString();
+      contactNotesTest.toString();
+      contactNotesTest.setEntryString("string");
+      contactNotesTest.getEntryString();
 
-      testMainCont.newDex();
-      testMainCont.save();
-      testMainCont.saveAs();
-      testMainCont.load();
+      // EmailAddress methods
+      emailAddressTest.checkStringIsValid("String");
+      emailAddressTest.getEntryString();
+      emailAddressTest.equals(emailAddressTest);
+      emailAddressTest.checkHasValidString();
+      emailAddressTest.toString();
+      emailAddressTest.setEntryString("string");
+      emailAddressTest.getEntryString();
 
-      System.out.println("Skeleton test completed");
+      // FirstName methods
+      firstNameTest.checkStringIsValid("String");
+      firstNameTest.getEntryString();
+      firstNameTest.equals(emailAddressTest);
+      firstNameTest.checkHasValidString();
+      firstNameTest.toString();
+      firstNameTest.setEntryString("string");
+      firstNameTest.getEntryString();
 
-      // Output:
+      // LastName methods
+      lastNameTest.checkStringIsValid("String");
+      lastNameTest.getEntryString();
+      lastNameTest.equals(emailAddressTest);
+      lastNameTest.checkHasValidString();
+      lastNameTest.toString();
+      lastNameTest.setEntryString("string");
+      lastNameTest.getEntryString();
+
+      // PhoneNumber methods
+      phoneNumberTest.checkStringIsValid("String");
+      phoneNumberTest.getEntryString();
+      phoneNumberTest.equals(emailAddressTest);
+      phoneNumberTest.checkHasValidString();
+      phoneNumberTest.toString();
+      phoneNumberTest.setEntryString("string");
+      phoneNumberTest.getEntryString();
+
+      // StreetAddress methods
+      streetAddressTest.checkStringIsValid("String");
+      streetAddressTest.getEntryString();
+      streetAddressTest.equals(emailAddressTest);
+      streetAddressTest.checkHasValidString();
+      streetAddressTest.toString();
+      streetAddressTest.setEntryString("string");
+      streetAddressTest.getEntryString();
+
+      // AppWindow methods
+      // AppWindow.start() is inherited from Application in Javafx and
+      // requires perameters currently unavailable to be passed
+      appWindowTest.setMessage("message");
+      appWindowTest.getJDex();
+      appWindowTest.getStage();
+      appWindowTest.getController();
+
+      // Gui methods
+      guiTest.run(new String[]{});
+
+      // MainCont methods
+      // MainCont.initialize() is is passed arguments from Javafx's Application
+      // which require a running application window.
+      mainContTest.refreshTable();
+      mainContTest.newContact();
+      mainContTest.search();
+      mainContTest.getTableColumns();
+      mainContTest.setApp(appWindowTest);
+      mainContTest.getApp();
+      mainContTest.setTableContents(new ArrayList<>());
+      mainContTest.getTableContents();
+      mainContTest.setMessage("string");
+
+      // MessageBarHandler methods
+      messageBarHandlerTest.setMsg("message string");
+      messageBarHandlerTest.getMsg();
+
+      // NewContactHandler methods
+      newContactHandlerTest.newContactButtonPress();
+      // all other functions of NewContactHandler are private
+      // helper functions of this
+
+      // SearchHandler methods
+      searchHandlerTest.searchButtonPress();
+      // all other functions of SearchHandler are private
+      // helper functions of this
+
+      // TableHandler methods
+      tableHandlerTest.initializeTable();
+      tableHandlerTest.refresh();
+      tableHandlerTest.setTableContents(new ArrayList<>());
+      tableHandlerTest.getTableContents();
+
+      //finished
+      System.out.println("Finished running skeleton test");
+
+      //  Output:
       /*
-      Skeleton test completed
-      */
+      Finished running skeleton test
+       */
   }
 
   /**
    * Gets user interface object
+   *
    * @return Ui: User Interface object. May be GUI or TUI
    */
   public Ui getUi() {
@@ -96,6 +228,7 @@ public class JDex {
 
   /**
    * Sets User Interface Object
+   *
    * @param ui: User Interface object. May be GUI or TUI
    */
   public void setUi(Ui ui) {
@@ -104,38 +237,59 @@ public class JDex {
 
   /**
    * Gets currently active rolodex object
-   * @return IDex: Active IDex object
+   *
+   * @return IRolodex: Active IRolodex object
    */
-  public Dex getDex() {
-    return dex;
+  public IRolodex getRolodex() {
+    return rolodex;
   }
 
   /**
-   * Sets active rolodex object to new IDex
-   * @param dex: New Rolodex object to be used
+   * Sets active rolodex object to new IRolodex
+   *
+   * @param rolodex: New Rolodex object to be used
    */
-  public void setDex(Dex dex) {
-    this.dex = dex;
+  public void setRolodex(IRolodex rolodex) {
+    this.rolodex = rolodex;
+  }
+
+  /**
+   * gets runtime args main method was called with
+   * @return runtime args String[] array
+   */
+  public String[] getRuntimeArgs() {
+    return runtimeArgs;
   }
 
   /**
    * builds rolodex object with information from settings
-   * @return IDex: Created rolodex object
+   *
+   * @return IRolodex: Created rolodex object
    */
-  private Dex buildDex() {
+  private IRolodex buildRolodex() {
     // placeholder: should check settings for the last save,
     // and load that if possible. If none exists, or error is raised,
     // construct new
-    return new Dex();
+    return new Rolodex(contactsFile);
   }
 
   /**
    * builds user interface based on information in settings
+   *
    * @return Ui: User Interface object
    */
-  private Ui buildUi(){
-    return new Gui(this, runtimeArgs); //placeholder.
-      // Should first check settings for type of GUI
+  private Ui buildUi() {
+    return new Gui(this); //placeholder.
+    // Should first check settings for type of GUI
   }
 
+  /**
+   * creates contacts File object to be stored and
+   * used for saving and loading data
+   * @return File to save to and load from.
+     */
+  private File buildContactsFile() {
+      // File does not accept a default constructor call.
+    return new File(this.getClass().getClassLoader().getResource("contacts.ser").getPath());
+  }
 }

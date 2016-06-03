@@ -1,77 +1,52 @@
 package io.github.tryexceptelse.jdex.be;
-/*
- * one object of this class represents one contact to be added to the list storing contacts.
+
+import io.github.tryexceptelse.jdex.be.entries.ContactEntry;
+import io.github.tryexceptelse.jdex.be.entries.ContactNotes;
+
+import java.io.Serializable;
+import java.util.HashMap;
+
+/**
+ * One object of this class represents one contact to be added to the list
+ * storing contacts.
  */
-public class Contact
+public class Contact implements IContact, Serializable
 {
-    private String first;
-    private String last;
-    private String email;
-    private String streetAddr;
-    private String phoneNumber;
-    private String notes;
-    public void Contact(String newFirst, String newLast, String newEmail,
-                        String newStreetAddr, String newPhoneNumber,String newNotes)
-    {
-        first=newFirst;
-        last=newLast;
-        email=newEmail;
-        streetAddr=newStreetAddr;
-        phoneNumber=newPhoneNumber;
-        notes=newNotes;
-    }
-    /*
-     * the following methods can be called to set set the variable of the same name
+    private HashMap<String, ContactEntry> entries; // HashMap storing Contact's entries.
+
+    /**
+     * Default constructor for Contact.
+     * Stores empty map of entries.
      */
-    public void setFirst(String newFirst)
-    {
-        first=newFirst;
+    public Contact(){
+        // placeholder
     }
-    public void setLast(String newLast)
-    {
-        last=newLast;
-    }
-    public void setEmail(String newEmail)
-    {
-        email=newEmail;
-    }
-    public void setStreetAddr(String newStreetAddr)
-    {
-        streetAddr=newStreetAddr;
-    }
-    public void setPhoneNumber(String newPhoneNumber)
-    {
-        phoneNumber=newPhoneNumber;
-    }
-    public void setNotes(String newNotes)
-    {
-        notes=newNotes;
-    }
-    /*
-     * the following methods can be called to get variables of the same name
+
+    /**
+     * Constructor for Contact using passed HashMap of entries to be
+     * stored within.
+     * @param entries: HashMap of ContactEntry object to be stored.
      */
-    public String getFirst()
+    public Contact(HashMap<String, ContactEntry> entries)
     {
-        return first;
+        // skeleton placeholder
     }
-    public String getLast()
-    {
-        return last;
+
+    /**
+     * Sets entry of String key name to value String
+     * @param key: String key to store value in.
+     * @param entry: ContactEntry to store with key.
+     */
+    public void setEntry(String key, ContactEntry entry){
+        // skeleton placeholder
     }
-    public String getEmail()
-    {
-        return email;
-    }
-    public String getstreetAddr()
-    {
-        return streetAddr;
-    }
-    public String getPhoneNumber()
-    {
-        return phoneNumber;
-    }
-    public String getNotes()
-    {
-        return notes;
+
+    /**
+     * Gets entry stored with key String.
+     * @param key: key String to retrieve data with
+     */
+    public ContactEntry getEntry(String key){
+        return new ContactNotes(); // placeholder.
+        // should return appropriate entry from entries
     }
 }
