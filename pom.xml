@@ -4,7 +4,7 @@
   <groupId>io.github.tryexceptelse.jdex</groupId>
   <artifactId>jdex</artifactId>
   <version>0.0.1-SNAPSHOT</version>
-  <name>JDex</name>
+  <name>jdex</name>
   <description>Java Contact Manager</description>
   <build>
     <plugins>

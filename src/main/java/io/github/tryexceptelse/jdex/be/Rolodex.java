@@ -15,8 +15,7 @@ import java.util.Set;
 /**
  * Stores and operates on Contacts
  */
-public class Rolodex implements IRolodex
-{
+public class Rolodex implements IRolodex {
 
     private ArrayList<Contact> contacts; // program's main contacts list
     private File contactsFile; // file object referencing program save location
@@ -27,36 +26,41 @@ public class Rolodex implements IRolodex
      * Default constructor for Rolodex.
      * Should use default file location
      */
-    public Rolodex(){
+    public Rolodex() {
         // skeleton placeholder.
     }
 
     /**
      * Constructor for Rolodex using passed File to load from
      * and use for saving.
+     *
      * @param contactsFile: File to load from and eventually save to on
-     *                    program close
+     *                      program close
      */
-    public Rolodex(File contactsFile){
+    public Rolodex(File contactsFile) {
         // skeleton placeholder
     }
 
     /**
      * Sets Rolodex's list of contacts.
+     *
      * @param newContacts: ArrayList of Contacts to store.
      */
-    public void setContacts(ArrayList<Contact> newContacts){
+    public void setContacts(ArrayList<Contact> newContacts) {
         contacts = newContacts;
     }
 
-    /** Returns all objects contained in ArrayList
+    /**
+     * Returns all objects contained in ArrayList
+     *
      * @return ArrayList of Contacts
      */
-    public ArrayList<Contact> getContacts(){
+    public ArrayList<Contact> getContacts() {
         return contacts;
     }
 
-    /** Returns Contact after adding it to list
+    /**
+     * Returns Contact after adding it to list
      *
      * @param newEntries HashMap of ContactEntries, with String keys.
      *                   This is the map of the entries that will be stored
@@ -65,29 +69,30 @@ public class Rolodex implements IRolodex
      * has a reference to the newly added object, from which it may display
      * information to the user, if needed.
      */
-    public Contact addContact(HashMap<String, ContactEntry> newEntries)
-    {
+    public Contact addContact(HashMap<String, ContactEntry> newEntries) {
         // placeholder. Contact should be added to contacts.
         return new Contact(newEntries);
     }
 
     /**
      * Returns list containing contacts that match all passed criteria.
+     *
      * @param searchCriteria: HashMap of criteria, stored with String keys,
-     *                      which all contacts in contacts list are compared to
-     *                      in order to determine whether they match and should
-     *                      be returned to the caller.
+     *                        which all contacts in contacts list are compared to
+     *                        in order to determine whether they match and should
+     *                        be returned to the caller.
      */
-    public ArrayList<Contact> search(HashMap<String, ContactEntry> searchCriteria)
-    {
+    public ArrayList<Contact> search(HashMap<String, ContactEntry> searchCriteria) {
         // skeleton placeholder. ArrayList should be populated with matches here.
         return new ArrayList<>();
     }
 
-    public void saveContacts(){
+    public void saveContacts() {
         // skeleton placeholder. Contacts should be saved to contactsFile.
     }
 
-    public ArrayList<Contact> loadContacts(){
+    public ArrayList<Contact> loadContacts() {
         // placeholder. ArrayList of Contacts should be loaded from contactsFile.
         return new ArrayList<>();
+    }
+}
