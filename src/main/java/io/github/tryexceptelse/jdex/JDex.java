@@ -262,25 +262,21 @@ public class JDex {
   }
 
   /**
-   * builds rolodex object with information from settings
+   * builds rolodex object
    *
    * @return IRolodex: Created rolodex object
    */
   private IRolodex buildRolodex() {
-    // placeholder: should check settings for the last save,
-    // and load that if possible. If none exists, or error is raised,
-    // construct new
     return new Rolodex(contactsFile);
   }
 
   /**
-   * builds user interface based on information in settings
+   * builds user interface
    *
    * @return Ui: User Interface object
    */
   private Ui buildUi() {
     return new Gui(this); //placeholder.
-    // Should first check settings for type of GUI
   }
 
   /**
