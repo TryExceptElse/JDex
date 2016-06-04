@@ -55,7 +55,7 @@ public class JDex {
       //
       // Main object:
       //
-      JDex JDexTest = new JDex(args);
+      JDex jDexTest = new JDex(args);
       //
       // Backend Objects:
       //
@@ -74,7 +74,7 @@ public class JDex {
       // Frontend Objects:
       //
       AppWindow appWindowTest = new AppWindow();
-      Gui guiTest = new Gui(JDexTest);
+      Gui guiTest = new Gui(jDexTest);
       MainCont mainContTest = new MainCont();
       //
       // User interface action handlers
@@ -90,14 +90,14 @@ public class JDex {
 
       //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
       // JDex Methods
-      JDexTest.setUi(guiTest);
-      JDexTest.getUi();
-      JDexTest.setRolodex(rolodexTest);
-      JDexTest.getRolodex();
-      JDexTest.getRuntimeArgs();
-      JDexTest.buildUi();
-      JDexTest.buildContactsFile();
-      JDexTest.buildRolodex();
+      jDexTest.setUi(guiTest);
+      jDexTest.getUi();
+      jDexTest.setRolodex(rolodexTest);
+      jDexTest.getRolodex();
+      jDexTest.getRuntimeArgs();
+      jDexTest.buildUi();
+      jDexTest.buildContactsFile();
+      jDexTest.buildRolodex();
 
       // Contact Methods
       contactTest.setEntry("testKey", contactNotesTest);
