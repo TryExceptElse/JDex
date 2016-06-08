@@ -1,13 +1,8 @@
 package io.github.tryexceptelse.jdex.be;
 
-import io.github.tryexceptelse.jdex.be.entries.ContactEntry;
+import io.github.tryexceptelse.jdex.be.entries.*;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.FileInputStream;
-import java.io.ObjectOutputStream;
-import java.io.ObjectInputStream;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
@@ -15,7 +10,8 @@ import java.util.Set;
 /**
  * Stores and operates on Contacts
  */
-public class Rolodex implements IRolodex {
+public class Rolodex implements IRolodex
+{
 
     private ArrayList<Contact> contacts; // program's main contacts list
     private File contactsFile; // file object referencing program save location
@@ -26,7 +22,8 @@ public class Rolodex implements IRolodex {
      * Default constructor for Rolodex.
      * Should use default file location
      */
-    public Rolodex() {
+    public Rolodex()
+    {
         // skeleton placeholder.
     }
 
@@ -37,7 +34,8 @@ public class Rolodex implements IRolodex {
      * @param contactsFile: File to load from and eventually save to on
      *                      program close
      */
-    public Rolodex(File contactsFile) {
+    public Rolodex(File contactsFile)
+    {
         // skeleton placeholder
     }
 
@@ -60,38 +58,51 @@ public class Rolodex implements IRolodex {
     }
 
     /**
-     * Returns Contact after adding it to list
-     *
-     * @param newEntries HashMap of ContactEntries, with String keys.
-     *                   This is the map of the entries that will be stored
-     *                   in the new Contact object.
-     * @return Contact which was added to the rolodex. This is so that the UI
-     * has a reference to the newly added object, from which it may display
-     * information to the user, if needed.
+     * @param first:      expects FirstName object representing the first name of the contact
+     * @param last:       expect LastName object representing the last name of the contact
+     * @param email:      expects EmailAddress object representing the email address of the contact
+     * @param streetAddr: expects EmailAddress object represnting the email address of the contact
+     * @param phone:      expects PhoneNumber object representing the phone number of the contact
+     * @param notes:      expects ContactNotes object representing notes for the contact
      */
-    public Contact addContact(HashMap<String, ContactEntry> newEntries) {
-        // placeholder. Contact should be added to contacts.
-        return new Contact(newEntries);
+
+    public Contact addContact(FirstName first,
+                              LastName last,
+                              EmailAddress email,
+                              StreetAddress streetAddr,
+                              PhoneNumber phone,
+                              ContactNotes notes)
+                              throws InvalidObjectException
+    {
+        // Checking to make sure all passed fields are valid. The methods are defined in their own classes
+        for (ContactEntry entry : new ContactEntry[]{first, last, email, streetAddr, phone, notes})
+        {
+            if (!entry.checkHasValidString())
+                throw new InvalidObjectException(entry + "was invalid. Could not add to contacts");
+        }
+        //adding contact to the contatcs ArrayList
+        contacts.add(new Contact(first, last, email, streetAddr, phone, notes));
+        return new Contact();
     }
 
     /**
-     * Returns list containing contacts that match all passed criteria.
      *
-     * @param searchCriteria: HashMap of criteria, stored with String keys,
-     *                        which all contacts in contacts list are compared to
-     *                        in order to determine whether they match and should
-     *                        be returned to the caller.
+     * @param searchedName: expects object of LastName class
+     * @return: will return an ArrayList contating all objects with a last name that match the given LastName.
      */
-    public ArrayList<Contact> search(HashMap<String, ContactEntry> searchCriteria) {
+    public ArrayList<Contact> search(LastName searchedName)
+    {
         // skeleton placeholder. ArrayList should be populated with matches here.
         return new ArrayList<>();
     }
 
-    public void saveContacts() {
+    public void saveContacts()
+    {
         // skeleton placeholder. Contacts should be saved to contactsFile.
     }
 
-    public ArrayList<Contact> loadContacts() {
+    public ArrayList<Contact> loadContacts()
+    {
         // placeholder. ArrayList of Contacts should be loaded from contactsFile.
         return new ArrayList<>();
     }

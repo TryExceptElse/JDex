@@ -3,7 +3,7 @@ package io.github.tryexceptelse.jdex.be.entries;
 /**
  * represents contact's first name
  */
-public class FirstName extends ContactNameEntry {
+public class FirstName extends ContactEntry {
 
     /**
      * Default constructor for FirstName

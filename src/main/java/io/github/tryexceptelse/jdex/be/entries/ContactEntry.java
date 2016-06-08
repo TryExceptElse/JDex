@@ -3,7 +3,7 @@ package io.github.tryexceptelse.jdex.be.entries;
 import java.io.Serializable;
 
 /**
- * Contact Entry stored in Contact's entries.
+ * Contact Entry stored in Contact's entries Hashmap.
  */
 public abstract class ContactEntry implements Serializable{
     private static final String DEFAULT_INVALID_STRING_MESSAGE =
@@ -49,7 +49,7 @@ public abstract class ContactEntry implements Serializable{
      * @param string: String to be evaluated for validity.
      * @return boolean of whether passed string is valid.
      */
-    public boolean checkStringIsValid(String string){
+    public static boolean checkStringIsValid(String string){
         // children should replace this method with something useful.
         return true;
     }

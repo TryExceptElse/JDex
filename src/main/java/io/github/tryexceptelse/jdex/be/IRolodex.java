@@ -1,7 +1,8 @@
 package io.github.tryexceptelse.jdex.be;
 
-import io.github.tryexceptelse.jdex.be.entries.ContactEntry;
+import io.github.tryexceptelse.jdex.be.entries.*;
 
+import java.io.InvalidObjectException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,26 +17,29 @@ public interface IRolodex
      */
     ArrayList<Contact> getContacts();
 
-    /** Returns Contact after adding it to list
-     *
-     * @param newEntries HashMap of ContactEntries, with String keys.
-     *                   This is the map of the entries that will be stored
-     *                   in the new Contact object.
-     * @return Contact which was added to the rolodex. This is so that the UI
-     * has a reference to the newly added object, from which it may display
-     * information to the user, if needed.
+    /**
+     * @param first:      expects FirstName object representing the first name of the contact
+     * @param last:       expect LastName object representing the last name of the contact
+     * @param email:      expects EmailAddress object representing the email address of the contact
+     * @param streetAddr: expects EmailAddress object represnting the email address of the contact
+     * @param phone:      expects PhoneNumber object representing the phone number of the contact
+     * @param notes:      expects ContactNotes object representing notes for the contact
      */
-    Contact addContact(HashMap<String, ContactEntry> newEntries);
+
+    public Contact addContact(FirstName first,
+                              LastName last,
+                              EmailAddress email,
+                              StreetAddress streetAddr,
+                              PhoneNumber phone,
+                              ContactNotes notes) throws InvalidObjectException;
 
 
     /**
-     * Returns list containing contacts that match all passed criteria.
-     * @param searchCriteria: HashMap of criteria, stored with String keys,
-     *                      which all contacts in contacts list are compared to
-     *                      in order to determine whether they match and should
-     *                      be returned to the caller.
+     *
+     * @param searchedName: expects object of LastName class
+     * @return: will return an ArrayList contating all objects with a last name that match the given LastName.
      */
-    ArrayList search(HashMap<String, ContactEntry> searchCriteria);
+    public ArrayList<Contact> search(LastName searchedName);
 
     /**
      * Serializes contacts list and saves it to drive
