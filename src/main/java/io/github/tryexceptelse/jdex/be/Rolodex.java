@@ -24,7 +24,7 @@ public class Rolodex implements IRolodex
      */
     public Rolodex()
     {
-        // skeleton placeholder.
+        contacts = new ArrayList<>();
     }
 
     /**
@@ -36,7 +36,7 @@ public class Rolodex implements IRolodex
      */
     public Rolodex(File contactsFile)
     {
-        // skeleton placeholder
+        contacts = new ArrayList<>(); //placeholder until we implement Load function.
     }
 
     /**
@@ -82,7 +82,7 @@ public class Rolodex implements IRolodex
         }
         //adding contact to the contatcs ArrayList
         contacts.add(new Contact(first, last, email, streetAddr, phone, notes));
-        return new Contact();
+        return new Contact(first, last, email, streetAddr, phone, notes);
     }
 
     /**

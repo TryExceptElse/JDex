@@ -20,8 +20,13 @@ public class Contact implements IContact, Serializable
 
     /**
      * Default constructor for Contact.
+     * @param first
+     * @param last
+     * @param email
+     * @param streetAddr
+     * @param phone
      */
-    public Contact()
+    public Contact(FirstName first, LastName last, EmailAddress email, StreetAddress streetAddr, PhoneNumber phone)
     {
         // placeholder
     }

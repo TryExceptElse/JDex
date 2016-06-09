@@ -39,9 +39,7 @@ public class LastName extends ContactEntry{
              {
                  return true;
              }
-
         }
-
         return false;
     }
 }
