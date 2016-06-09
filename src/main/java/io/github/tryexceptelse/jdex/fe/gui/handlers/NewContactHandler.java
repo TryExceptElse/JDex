@@ -80,23 +80,9 @@ public class NewContactHandler extends Handler{
             fields[i] = new TextField();
         }
         // create prompts
-        prompts = new String[]{
-                "Enter First Name",
-                "Enter Last Name",
-                "Enter Email Address",
-                "Enter Street Address",
-                "Enter Phone Number",
-                "Notes"
-        };
+        prompts = getPromptStrings();
         // list entry classes in order used
-        Class[] entryClasses = new Class[]{
-                FirstName.class,
-                LastName.class,
-                EmailAddress.class,
-                StreetAddress.class,
-                PhoneNumber.class,
-                ContactNotes.class,
-        };
+        Class[] entryClasses = getEntryClasses();
         // assign prompts to fields
         for (int i = 0; i < prompts.length; i++){
             TextField field = fields[i];
@@ -106,6 +92,40 @@ public class NewContactHandler extends Handler{
         }
         return fields;
     }
+    /**
+     * Returns array of  entry classes in order used
+     *
+     * Helper method for createFields
+     * @return Class[] of entry Classes
+     */
+    private static Class[] getEntryClasses(){
+        return new Class[]{
+                FirstName.class,
+                LastName.class,
+                EmailAddress.class,
+                StreetAddress.class,
+                PhoneNumber.class,
+                ContactNotes.class,
+        };
+    }
+
+    /**
+     * Returns array of prompt strings in order used.
+     *
+     * Helper method to createFields
+     * @return String[] of strings used for field prompts.
+     */
+    private static String[] getPromptStrings(){
+        return new String[]{
+                "Enter First Name",
+                "Enter Last Name",
+                "Enter Email Address",
+                "Enter Street Address",
+                "Enter Phone Number",
+                "Notes"
+        };
+    }
+
 
     /**
      * Creates 'Create' button which when pressed creates and adds a contact
@@ -196,7 +216,7 @@ public class NewContactHandler extends Handler{
 
         // set positions of contained elements
         assert labels.length == fields.length; // for loop expects equal..
-            // ..length of arrays (one label for each field)
+            // ..lengths of arrays (one label for each field)
         for (int i = 0; i < labels.length; i++){
             GridPane.setConstraints(labels[i], 0, i); // set label positions
             GridPane.setConstraints(fields[i], 1, i); // set field positions
@@ -235,7 +255,7 @@ public class NewContactHandler extends Handler{
         // get bool of whether user's entry is valid
         boolean entryIsValid = checkStringIsValid(contactEntryClass, entryString);
         // apply effects.
-        if (entryIsValid) field.setStyle("-fx-text-inner-color: white;");
+        if (entryIsValid) field.setStyle("-fx-text-inner-color: black;");
         else field.setStyle("-fx-text-inner-color: red;");
         // set tooltip to be displayed on mouse-hover
         field.setTooltip(new Tooltip(entryFeedback));
@@ -253,8 +273,8 @@ public class NewContactHandler extends Handler{
         String entryFeedback;
         try {
             getStringFeedbackMethod = entryClass.getMethod(
-                    "getStringFeedback");
-            entryFeedback = (String)getStringFeedbackMethod.invoke(entryString);
+                    "getStringFeedback", String.class);
+            entryFeedback = (String)getStringFeedbackMethod.invoke(null, entryString);
         } catch (Exception e){
             e.printStackTrace();
             entryFeedback = "";
@@ -274,8 +294,8 @@ public class NewContactHandler extends Handler{
         Method checkValidityMethod;
         boolean returnBool;
         try{
-            checkValidityMethod = entryClass.getMethod("checkStringIsValid");
-            returnBool = (boolean)checkValidityMethod.invoke(entryString);
+            checkValidityMethod = entryClass.getMethod("checkStringIsValid", String.class);
+            returnBool = (boolean)checkValidityMethod.invoke(null, entryString);
         } catch (Exception e){
             e.printStackTrace();
             returnBool = true;  // better just to let the program get on.
@@ -323,6 +343,12 @@ public class NewContactHandler extends Handler{
         } catch (InvalidObjectException e){
             // todo: make popup error message?
             app.setMessage("could not add contact; invalid entered data");
+            assert fields.length == getEntryClasses().length;
+            for (int i = 0; i < fields.length; i++){
+                TextField field = fields[i];
+                Class entryClass = getEntryClasses()[i];
+                checkFieldEntry(field, entryClass);
+            }
         }
     }
 

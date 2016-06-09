@@ -83,8 +83,9 @@ public class Rolodex implements IRolodex
                 throw new InvalidObjectException(entry + "was invalid. Could not add to contacts");
         }
         //adding contact to the contatcs ArrayList
-        contacts.add(new Contact(first, last, email, streetAddr, phone, notes));
-        return new Contact();
+        Contact createdContact = new Contact(first, last, email, streetAddr, phone, notes);
+        contacts.add(createdContact);
+        return createdContact;
     }
 
     /**

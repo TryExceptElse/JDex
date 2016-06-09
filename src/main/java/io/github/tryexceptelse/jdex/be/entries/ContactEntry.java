@@ -68,7 +68,7 @@ public abstract class ContactEntry implements Serializable{
      * or any other feedback to be given about the string.
      * @return String feedback, or null, if nothing is to be displayed.
      */
-    public String getStringFeedback(String string){
+    public static String getStringFeedback(String string){
         return DEFAULT_INVALID_STRING_MESSAGE; // placeholder
     }
 
