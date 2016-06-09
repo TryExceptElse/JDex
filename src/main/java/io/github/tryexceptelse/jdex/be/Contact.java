@@ -41,7 +41,12 @@ public class Contact implements IContact, Serializable
                    PhoneNumber phone,
                    ContactNotes notes)
     {
-        // skeleton placeholder
+        this.first=first;
+        this.last=last;
+        this.email=email;
+        this.streetAddr=streetAddr;
+        this.phone=phone;
+        this.notes=notes;
     }
 
     /**

@@ -2,7 +2,7 @@ package io.github.tryexceptelse.jdex.be.entries;
 
 /**
  * Represents a Contact's last name.
- * Child of ContactNameEntry, which is itself a child of ContactEntry
+ * Child of ContactEntry
  */
 public class LastName extends ContactEntry{
     /**
@@ -39,12 +39,9 @@ public class LastName extends ContactEntry{
              {
                  return true;
              }
-            else
-             {
-                 return false;
-             }
+
         }
 
-        return true;
+        return false;
     }
 }
