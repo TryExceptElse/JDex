@@ -57,15 +57,31 @@ public class Rolodex implements IRolodex
         return contacts;
     }
 
+
     /**
+     * adds contact to list being given Contact object to add
+     * @param: contact contact you want to add to list
+     * @return: the contact that was added, for ease of modification
+     */
+    public Contact addContact(Contact contact)throws InvalidObjectException
+    {
+        if (contact.checkParametersAreValid(contact))
+        {
+            contacts.add(contact);
+            return contact;
+        }
+        throw new InvalidObjectException("contact could not be added because one or more of the feilds was invalid");
+    }
+    /**
+     * adds contact to list, being given each  attribute.
      * @param first:      expects FirstName object representing the first name of the contact
      * @param last:       expect LastName object representing the last name of the contact
      * @param email:      expects EmailAddress object representing the email address of the contact
      * @param streetAddr: expects EmailAddress object represnting the email address of the contact
      * @param phone:      expects PhoneNumber object representing the phone number of the contact
      * @param notes:      expects ContactNotes object representing notes for the contact
+     * @return: will return the contact that was added, for ease of modification
      */
-
     public Contact addContact(FirstName first,
                               LastName last,
                               EmailAddress email,
@@ -74,15 +90,14 @@ public class Rolodex implements IRolodex
                               ContactNotes notes)
                               throws InvalidObjectException
     {
-        // Checking to make sure all passed fields are valid. The methods are defined in their own classes
-        for (ContactEntry entry : new ContactEntry[]{first, last, email, streetAddr, phone, notes})
-        {
-            if (!entry.checkHasValidString())
-                throw new InvalidObjectException(entry + "was invalid. Could not add to contacts");
-        }
         //adding contact to the contatcs ArrayList
-        contacts.add(new Contact(first, last, email, streetAddr, phone, notes));
-        return new Contact(first, last, email, streetAddr, phone, notes);
+        Contact contact = new Contact(first, last, email , streetAddr , phone , notes);
+        if(contact.checkParametersAreValid(contact))
+        {
+            contacts.add(new Contact(first, last, email, streetAddr, phone, notes));
+            return  contact;
+        }
+        throw new InvalidObjectException("contact could not be added because one or more of the fields was invalid");
     }
 
     /**

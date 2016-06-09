@@ -20,15 +20,10 @@ public class Contact implements IContact, Serializable
 
     /**
      * Default constructor for Contact.
-     * @param first
-     * @param last
-     * @param email
-     * @param streetAddr
-     * @param phone
      */
-    public Contact(FirstName first, LastName last, EmailAddress email, StreetAddress streetAddr, PhoneNumber phone)
+    public Contact()
     {
-        // placeholder
+
     }
 
     /**
@@ -52,6 +47,39 @@ public class Contact implements IContact, Serializable
         this.streetAddr=streetAddr;
         this.phone=phone;
         this.notes=notes;
+    }
+    /**
+     * Calls the checkHasValidString method on each of the parameters of the object
+     * @param contact: object of Contact class
+     */
+    public boolean checkParametersAreValid(Contact contact)
+    {
+        // Checking to make sure all passed fields are valid. The methods are defined in their own classes
+        if (contact.getLast().checkHasValidString()==false)
+        {
+            return false;
+        }
+        if(contact.getFirst().checkHasValidString()==false)
+        {
+            return false;
+        }
+        if (contact.getEmail().checkHasValidString()==false)
+        {
+            return false;
+        }
+        if (contact.getStreetAddr().checkHasValidString()==false)
+        {
+            return false;
+        }
+        if (contact.getPhone().checkHasValidString()==false)
+        {
+            return false;
+        }
+        if (contact.getNotes().checkHasValidString()==false)
+        {
+            return false;
+        }
+        return true;
     }
 
     /**

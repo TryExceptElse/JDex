@@ -25,7 +25,6 @@ public interface IRolodex
      * @param phone:      expects PhoneNumber object representing the phone number of the contact
      * @param notes:      expects ContactNotes object representing notes for the contact
      */
-
     public Contact addContact(FirstName first,
                               LastName last,
                               EmailAddress email,
