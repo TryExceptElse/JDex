@@ -8,6 +8,9 @@ import java.sql.Time;
 /**
  * Message bar handler to provide feedback to user on results of their
  * actions, etc
+ * The message bar resides beneath the Contact Table in the GUI, and is updated
+ * by different handlers (via calling setFeedbackMessage(String)) when events
+ * occur in order to present status information to the user.
  */
 public class MessageBarHandler extends Handler{
     private Label messageLabel;
@@ -20,7 +23,9 @@ public class MessageBarHandler extends Handler{
      */
     public MessageBarHandler(MainCont controller){
         super(controller);
-        // skeleton placeholder
+        this.app = controller.getApp();
+        jDex = app.getJDex();
+        messageLabel = controller.messageLabel;
     }
 
     /**
@@ -28,7 +33,7 @@ public class MessageBarHandler extends Handler{
      * @param msg String of message to be displayed.
      */
     public void setMsg(String msg){
-        // placeholder. Should set GUI Label object (from Javafx.)
+        messageLabel.setText(msg);
     }
 
     /**
@@ -36,8 +41,6 @@ public class MessageBarHandler extends Handler{
      * @return String of message.
      */
     public String getMsg(){
-        // skeleton placeholder. Should get message from GUI Label object.
-        // (From Javafx)
-        return "placeholder message";
+        return messageLabel.getText();
     }
 }

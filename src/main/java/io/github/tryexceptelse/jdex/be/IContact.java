@@ -1,6 +1,7 @@
 package io.github.tryexceptelse.jdex.be;
 
-import io.github.tryexceptelse.jdex.be.entries.ContactEntry;
+import io.github.tryexceptelse.jdex.be.entries.FirstName;
+import io.github.tryexceptelse.jdex.be.entries.LastName;
 
 /**
  * Contact Interface. These methods will be called by frontend elements,
@@ -8,5 +9,6 @@ import io.github.tryexceptelse.jdex.be.entries.ContactEntry;
  */
 public interface IContact
 {
-
+    LastName getLast();
+    FirstName getFirst();
 }

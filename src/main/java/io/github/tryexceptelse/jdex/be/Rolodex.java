@@ -6,6 +6,7 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Stores and operates on Contacts
@@ -36,7 +37,8 @@ public class Rolodex implements IRolodex
      */
     public Rolodex(File contactsFile)
     {
-        // skeleton placeholder
+        this.contactsFile = contactsFile;
+        contacts = loadContacts();
     }
 
     /**
@@ -93,7 +95,8 @@ public class Rolodex implements IRolodex
     public ArrayList<Contact> search(LastName searchedName)
     {
         // skeleton placeholder. ArrayList should be populated with matches here.
-        return new ArrayList<>();
+        return contacts.stream().filter(contact -> contact.getLast() == searchedName)
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 
     public void saveContacts()

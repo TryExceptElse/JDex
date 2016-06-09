@@ -63,8 +63,12 @@ public class MainCont implements Initializable {
      * elements / functionalities of the GUI.
      */
     void createHandlers(){
-        // skeleton placeholder.
         // should initialize all handler variables with their appropriate Class.
+        newContactHandler = new NewContactHandler(this);
+        searchHandler = new SearchHandler(this);
+        table = new TableHandler(this);
+        messageBar = new MessageBarHandler(this);
+        table.initializeTable();
     }
 
     /**
@@ -74,27 +78,27 @@ public class MainCont implements Initializable {
      * the New Contact Button.
      */
     public void newContact(){
-        // skeleton placeholder
-        // should call "newContactButtonPressed" in newContactHandler.
+        newContactHandler.newContactButtonPress();
     }
 
     /**
      * Creates search entry fields
      * and uses values to find list of matching Contacts.
      *
-     * This method is directly called by
+     * This method is directly called by Application when the user clicks the
+     * search button.
      */
     public void search(){
-        // skeleton placeholder
-        // should call "newContactButtonPressed" in searchHandler.
+        searchHandler.searchButtonPress();
     }
 
     /**
-     * Refreshes table to update displayed contacts.
-     * May add, edit, or remove as needed
+     * Refreshes table to update displayed contacts to reflect changes made in
+     * ArrayList containing Contacts.
+     * May add, edit, or remove from the table as needed
      */
     public void refreshTable(){
-        // placeholder.
+        table.refresh();
     }
 
     /**
@@ -102,17 +106,18 @@ public class MainCont implements Initializable {
      * @param msg String of message to be displayed.
      */
     public void setMessage(String msg){
-        // placeholder
+        messageLabel.setText(msg);
     }
 
     /**
-     * Sets AppWindow reference
+     * Sets AppWindow and activeJDex references based on passed AppWindow.
+     * This method is called by AppWindow.start() after the loader is finished
+     * loading.
      * @param app: AppWindow running the application
      */
     public void setApp(AppWindow app){
-        // placeholder
-        // should set both app, and activeJDex.
-        // activeJDex will be set based on app.getJDex()
+        this.app = app;
+        this.activeJDex = app.getJDex();
     }
 
     /**
@@ -128,7 +133,14 @@ public class MainCont implements Initializable {
      * @return TableColumn[] TableHandler Columns.
      */
     public TableColumn[] getTableColumns(){
-        return new TableColumn[]{}; // placeholder
+        return new TableColumn[]{
+                firstColumn,
+                lastColumn,
+                emailColumn,
+                streetAddrColumn,
+                phoneColumn,
+                notesColumn
+        };
     }
 
     /**
@@ -144,6 +156,7 @@ public class MainCont implements Initializable {
      * @param contacts: New contacts list to be displayed
      */
     public void setTableContents(ArrayList<Contact> contacts){
-        // placeholder skeleton.
+        table.setTableContents(contacts);
     }
+
 }
