@@ -19,6 +19,4 @@ public class FirstName extends ContactEntry {
     public FirstName(String entryString){
         super(entryString);
     }
-
-    public static String getStringFeedback(String string){return "";}
 }

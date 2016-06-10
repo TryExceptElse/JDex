@@ -5,10 +5,7 @@ import io.github.tryexceptelse.jdex.be.entries.*;
 import io.github.tryexceptelse.jdex.fe.gui.MainCont;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.TextField;
-import javafx.scene.control.Tooltip;
+import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -88,7 +85,10 @@ public class NewContactHandler extends Handler{
             TextField field = fields[i];
             Class entryClass = entryClasses[i];
             field.setPromptText(prompts[i]);
-            field.setOnAction(event -> checkFieldEntry(field, entryClass));
+            field.textProperty().addListener(
+                    (observable, oldValue, newValue) ->
+                            checkFieldEntry(field, entryClass)
+            );
         }
         return fields;
     }
@@ -255,8 +255,8 @@ public class NewContactHandler extends Handler{
         // get bool of whether user's entry is valid
         boolean entryIsValid = checkStringIsValid(contactEntryClass, entryString);
         // apply effects.
-        if (entryIsValid) field.setStyle("-fx-text-inner-color: black;");
-        else field.setStyle("-fx-text-inner-color: red;");
+        if (entryIsValid) field.setStyle("-fx-control-inner-background: white;");
+        else field.setStyle("-fx-control-inner-background: red;");
         // set tooltip to be displayed on mouse-hover
         field.setTooltip(new Tooltip(entryFeedback));
     }
@@ -273,7 +273,7 @@ public class NewContactHandler extends Handler{
         String entryFeedback;
         try {
             getStringFeedbackMethod = entryClass.getMethod(
-                    "getStringFeedback", String.class);
+                    "getStringFeedback", String.class); //name, argument type
             entryFeedback = (String)getStringFeedbackMethod.invoke(null, entryString);
         } catch (Exception e){
             e.printStackTrace();
@@ -294,7 +294,8 @@ public class NewContactHandler extends Handler{
         Method checkValidityMethod;
         boolean returnBool;
         try{
-            checkValidityMethod = entryClass.getMethod("checkStringIsValid", String.class);
+            checkValidityMethod = entryClass.getMethod(
+                    "checkStringIsValid", String.class); // name, arg type
             returnBool = (boolean)checkValidityMethod.invoke(null, entryString);
         } catch (Exception e){
             e.printStackTrace();
@@ -341,8 +342,8 @@ public class NewContactHandler extends Handler{
             controller.refreshTable();
             cleanUp();
         } catch (InvalidObjectException e){
-            // todo: make popup error message?
             app.setMessage("could not add contact; invalid entered data");
+            // assert there should be one entry class for each field.
             assert fields.length == getEntryClasses().length;
             for (int i = 0; i < fields.length; i++){
                 TextField field = fields[i];

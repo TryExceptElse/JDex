@@ -29,22 +29,17 @@ public class LastName extends ContactEntry{
     {
         if(!ContactEntry.checkStringIsValid(entryString))
            return false;
-        else if (entryString==null)
+        if (entryString==null)
             return false;
         //iterates through each char of the String and checks if it is a ' '. If one of them is not, returns true
-        String str = new String(entryString);
+        String str = entryString;
         for (int i = 0 ; i < str.length() ; i++)
         {
-             if (str.charAt(i)!= ' ')
-             {
+             if (str.charAt(i)!= ' ') {
                  return true;
-             }
-            else
-             {
-                 return false;
              }
         }
 
-        return true;
+        return false;
     }
 }
