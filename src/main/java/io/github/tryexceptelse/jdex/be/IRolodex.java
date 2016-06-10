@@ -21,7 +21,7 @@ public interface IRolodex
      * @param first:      expects FirstName object representing the first name of the contact
      * @param last:       expect LastName object representing the last name of the contact
      * @param email:      expects EmailAddress object representing the email address of the contact
-     * @param streetAddr: expects EmailAddress object represnting the email address of the contact
+     * @param streetAddr: expects EmailAddress object representing the email address of the contact
      * @param phone:      expects PhoneNumber object representing the phone number of the contact
      * @param notes:      expects ContactNotes object representing notes for the contact
      */

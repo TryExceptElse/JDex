@@ -50,32 +50,31 @@ public class Contact implements IContact, Serializable
     }
     /**
      * Calls the checkHasValidString method on each of the parameters of the object
-     * @param contact: object of Contact class
      */
-    public boolean checkParametersAreValid(Contact contact)
+    public boolean checkParametersAreValid()
     {
         // Checking to make sure all passed fields are valid. The methods are defined in their own classes
-        if (contact.getLast().checkHasValidString()==false)
+        if (last.checkHasValidString())
         {
             return false;
         }
-        if(contact.getFirst().checkHasValidString()==false)
+        if(first.checkHasValidString())
         {
             return false;
         }
-        if (contact.getEmail().checkHasValidString()==false)
+        if (email.checkHasValidString())
         {
             return false;
         }
-        if (contact.getStreetAddr().checkHasValidString()==false)
+        if (streetAddr.checkHasValidString())
         {
             return false;
         }
-        if (contact.getPhone().checkHasValidString()==false)
+        if (phone.checkHasValidString())
         {
             return false;
         }
-        if (contact.getNotes().checkHasValidString()==false)
+        if (notes.checkHasValidString())
         {
             return false;
         }

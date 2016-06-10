@@ -20,7 +20,7 @@ public class Rolodex implements IRolodex
 
     /**
      * Default constructor for Rolodex.
-     * Should use default file location
+     * Should use default file location, or generate empty ArrayList
      */
     public Rolodex()
     {
@@ -65,7 +65,7 @@ public class Rolodex implements IRolodex
      */
     public Contact addContact(Contact contact)throws InvalidObjectException
     {
-        if (contact.checkParametersAreValid(contact))
+        if (contact.checkParametersAreValid())
         {
             contacts.add(contact);
             return contact;
@@ -90,11 +90,11 @@ public class Rolodex implements IRolodex
                               ContactNotes notes)
                               throws InvalidObjectException
     {
-        //adding contact to the contatcs ArrayList
+        //adding contact to the contacts ArrayList if its parameters are valid
         Contact contact = new Contact(first, last, email , streetAddr , phone , notes);
-        if(contact.checkParametersAreValid(contact))
+        if(contact.checkParametersAreValid())
         {
-            contacts.add(new Contact(first, last, email, streetAddr, phone, notes));
+            contacts.add(contact);
             return  contact;
         }
         throw new InvalidObjectException("contact could not be added because one or more of the fields was invalid");

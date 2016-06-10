@@ -20,6 +20,6 @@ public interface IContact
     public void setPhone(PhoneNumber phone);
     public ContactNotes getNotes();
     public void setNotes(ContactNotes notes);
-    public boolean checkParametersAreValid(Contact contact);
+    public boolean checkParametersAreValid();
 
 }
