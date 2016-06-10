@@ -49,32 +49,32 @@ public class Contact implements IContact, Serializable
         this.notes=notes;
     }
     /**
-     * Calls the checkHasValidString method on each of the parameters of the object
+     * Calls the checkHasValidString method on each of the parameters of the object, return false if the check fails.
      */
     public boolean checkParametersAreValid()
     {
         // Checking to make sure all passed fields are valid. The methods are defined in their own classes
-        if (last.checkHasValidString())
+        if (!last.checkHasValidString())
         {
             return false;
         }
-        if(first.checkHasValidString())
+        if(!first.checkHasValidString())
         {
             return false;
         }
-        if (email.checkHasValidString())
+        if (!email.checkHasValidString())
         {
             return false;
         }
-        if (streetAddr.checkHasValidString())
+        if (!streetAddr.checkHasValidString())
         {
             return false;
         }
-        if (phone.checkHasValidString())
+        if (!phone.checkHasValidString())
         {
             return false;
         }
-        if (notes.checkHasValidString())
+        if (!notes.checkHasValidString())
         {
             return false;
         }
