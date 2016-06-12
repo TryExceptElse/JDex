@@ -1,6 +1,9 @@
 package io.github.tryexceptelse.jdex.be.entries;
 
+import io.github.tryexceptelse.jdex.be.Contact;
+
 import java.io.Serializable;
+import java.lang.reflect.Method;
 
 /**
  * Contact Entry stored in Contact's entries Hashmap.
@@ -41,7 +44,16 @@ public abstract class ContactEntry implements Serializable{
      * @return boolean of whether string is a valid entry
      */
     public boolean checkHasValidString(){
-        return checkStringIsValid(entryString);
+        Class thisClass = this.getClass();
+        try{
+            Method checkMethod = thisClass.getMethod(
+                    "checkStringIsValid", String.class);
+            return (boolean)checkMethod.invoke(null, entryString);
+        } catch (Exception e){
+            System.out.println("Error: Could not access checkStringIsValid method");
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
@@ -68,7 +80,7 @@ public abstract class ContactEntry implements Serializable{
      * or any other feedback to be given about the string.
      * @return String feedback, or null, if nothing is to be displayed.
      */
-    public String getStringFeedback(String string){
+    public static String getStringFeedback(String string){
         return DEFAULT_INVALID_STRING_MESSAGE; // placeholder
     }
 

@@ -1,5 +1,7 @@
 package io.github.tryexceptelse.jdex.fe.gui.handlers;
 
+import io.github.tryexceptelse.jdex.be.entries.ContactEntry;
+import io.github.tryexceptelse.jdex.be.entries.LastName;
 import io.github.tryexceptelse.jdex.fe.gui.MainCont;
 import javafx.scene.control.*;
 
@@ -33,7 +35,7 @@ public class SearchHandler extends Handler{
      * closing the search mode.
      */
     public void searchButtonPress(){
-        // placeholder
+        // skeleton
     }
 
     /**
@@ -41,7 +43,10 @@ public class SearchHandler extends Handler{
      * Creates search label, field, and buttons, for user's use.
      */
     private void goButtonPress(){
-        // placeholder
+        LastName lastNameToFind = new LastName(searchField.getText());
+        controller.setTableContents(jDex.getRolodex().search(lastNameToFind));
+        app.setMessage("Displaying contacts with last name: " +
+                lastNameToFind.getEntryString());
     }
 
     /**
@@ -49,13 +54,19 @@ public class SearchHandler extends Handler{
      * closes and removes search's visual elements
      */
     private void closeButtonPress(){
-        // placeholder
+        controller.setTableContents(jDex.getRolodex().getContacts());
+        cleanUp();
     }
 
     /**
      * cleans search's visual elements from application window
      */
     private void cleanUp(){
-        // placeholder
+        toolBar.getItems().removeAll(searchLabel, searchField, goButton, closeButton);
+        searchLabel = null;
+        searchField = null;
+        goButton = null;
+        closeButton = null;
+        searchButton.setVisible(true);
     }
 }
