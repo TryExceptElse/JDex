@@ -121,6 +121,7 @@ public class JDex {
      */
   private File buildContactsFile() {
       // File does not accept a default constructor call.
-    return new File(this.getClass().getClassLoader().getResource("contacts.ser").getPath());
+    return new File(this.getClass().getClassLoader().
+            getResource("contacts.ser").getPath());
   }
 }

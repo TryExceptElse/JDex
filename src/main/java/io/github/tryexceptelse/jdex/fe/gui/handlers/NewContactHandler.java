@@ -28,9 +28,9 @@ public class NewContactHandler extends Handler{
     }
 
     /**
-     * Method called upon the user clicking the "New Contact" button.
-     * creates pop-up window requesting information to be passed to the new
+     * Creates pop-up window requesting information to be passed to the new
      * contact.
+     * Method called upon the user clicking the "New Contact" button.
      */
     public void newContactButtonPress(){
         Label[] labels = createLabels();
@@ -338,7 +338,8 @@ public class NewContactHandler extends Handler{
             IContact newContact = jDex.getRolodex().
                     addContact(first, last, email, streetAddr, phone, notes);
             app.setMessage(String.format("created new contact for %s, %s",
-                    newContact.getLast().getEntryString(), newContact.getFirst().getEntryString()));
+                    newContact.getLast().getEntryString(),
+                    newContact.getFirst().getEntryString()));
             controller.refreshTable();
             cleanUp();
         } catch (InvalidObjectException e){

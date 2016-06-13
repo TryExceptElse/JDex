@@ -30,13 +30,13 @@ public class MainCont implements Initializable {
     public ToolBar toolBar;
     public Button newButton;
     public Button searchButton;
-    public TableView contactsTable;
-    public TableColumn firstColumn;
-    public TableColumn lastColumn;
-    public TableColumn emailColumn;
-    public TableColumn streetAddrColumn;
-    public TableColumn phoneColumn;
-    public TableColumn notesColumn;
+    public TableView<Contact> contactsTable;
+    public TableColumn<Contact, String> firstColumn;
+    public TableColumn<Contact, String> lastColumn;
+    public TableColumn<Contact, String> emailColumn;
+    public TableColumn<Contact, String> streetAddrColumn;
+    public TableColumn<Contact, String> phoneColumn;
+    public TableColumn<Contact, String> notesColumn;
     public Label messageLabel;
 
     //handlers
