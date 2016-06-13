@@ -85,7 +85,8 @@ public class TableHandler extends Handler{
         return p -> {
             // set default values
             Method getterMethod = null;
-            ObservableValue<String> tableCellValue = new ReadOnlyObjectWrapper<>("");
+            ObservableValue<String> tableCellValue =
+                    new ReadOnlyObjectWrapper<>("");
             // try to get the method named by passed arg String
             try{
                 getterMethod = p.getValue().getClass().getMethod(getterName);
@@ -166,6 +167,7 @@ public class TableHandler extends Handler{
             }
         }).start();
     }
+
     /**
      * create mail uri
      * @param address emailAddress String to create mail uri from.
@@ -253,7 +255,8 @@ public class TableHandler extends Handler{
                 try {
                     jDex.getRolodex().getContacts().remove(contact);
                     refresh();
-                    app.setMessage(String.format("Removed %s, %s from contacts.",
+                    app.setMessage(String.format(
+                            "Removed %s, %s from contacts.",
                             contact.getLast(), contact.getFirst()));
                 } catch (Exception e) {      // prevent race conditions, etc
                     e.printStackTrace();
@@ -286,12 +289,9 @@ public class TableHandler extends Handler{
         // make confirmation alert
         Alert confirmDialogue = new Alert(Alert.AlertType.CONFIRMATION);
         confirmDialogue.setTitle("Delete Contact?");
-        confirmDialogue.setHeaderText(String.format(
-                "Remove '%s, %s' ?",
-                contact.getLast(), contact.getFirst()));
+        confirmDialogue.setHeaderText("Are you sure?");
         confirmDialogue.setContentText(String.format(
-                "Are you sure you wish to delete %s %s from " +
-                        "your contacts?",
+                "Remove %s %s from contacts?",
                 contact.getFirst(), contact.getLast()));
         // show alert
         Optional<ButtonType> result = confirmDialogue.showAndWait();
