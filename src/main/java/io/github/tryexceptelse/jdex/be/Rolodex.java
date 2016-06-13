@@ -101,11 +101,19 @@ public class Rolodex implements IRolodex
     /**
      *
      * @param searchedName: expects object of LastName class
-     * @return: will return an ArrayList contating all objects with a last name that match the given LastName.
+     * @return: will return an ArrayList containing all objects with a last name that match the given LastName.
      */
     public ArrayList<Contact> search(LastName searchedName)
     {
-        return new ArrayList<>();
+        ArrayList<Contact> searchedContacts = new ArrayList<>();
+        for (int i = 0; i < contacts.size(); i++)
+        {
+            if (contacts.get(i).getLast().equals(searchedName))
+            {
+                searchedContacts.add(contacts.get(i));
+            }
+        }
+        return searchedContacts;
     }
 
     /**
@@ -116,14 +124,48 @@ public class Rolodex implements IRolodex
         Collections.sort(contacts);
     }
 
-    public void saveContacts()
-    {
-        // skeleton placeholder. Contacts should be saved to contactsFile.
+    /**
+     * Saves contacts to contactsFile in serializble form
+     */
+    public void saveContacts(){
+        try {
+            FileOutputStream fileOut = new FileOutputStream(contactsFile);
+            ObjectOutputStream objOut = new ObjectOutputStream(fileOut);
+            objOut.writeObject(contacts);
+            fileOut.close();
+            objOut.close();
+        } catch (IOException IOE) {
+            System.out.println("Error saving contacts to file");
+            IOE.printStackTrace();
+        }
     }
 
-    public ArrayList<Contact> loadContacts()
-    {
-        // placeholder. ArrayList of Contacts should be loaded from contactsFile.
-        return new ArrayList<>();
+    /**
+     * Loads contacts from contactsFile
+     * @return: ArrayList with Contacts
+     */
+    public ArrayList<Contact> loadContacts(){
+        ArrayList<Contact> newContacts = new ArrayList<>();
+        try
+        {
+            FileInputStream fileIn = new FileInputStream(contactsFile);
+            ObjectInputStream objIn = new ObjectInputStream(fileIn);
+            Object loadedObject = objIn.readObject();
+            if (!(loadedObject instanceof ArrayList)) {
+                throw new IOException("Object retrieved from serializable was not an ArrayList");
+            }
+            newContacts = (ArrayList<Contact>) loadedObject;
+            objIn.close();
+            fileIn.close();
+        }catch(IOException IOE){
+            System.out.println("Error loading contacts from file.");
+            IOE.printStackTrace();
+            System.out.println("Continuing with empty contacts list.");
+        }catch(ClassNotFoundException noClass){
+            System.out.println("Could not read contacts object from file");
+            noClass.printStackTrace();
+            System.out.println("Continuing with empty contacts list.");
+        }
+        return newContacts;
     }
 }
