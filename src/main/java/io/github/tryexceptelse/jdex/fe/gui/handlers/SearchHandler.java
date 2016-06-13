@@ -4,6 +4,8 @@ import io.github.tryexceptelse.jdex.be.entries.ContactEntry;
 import io.github.tryexceptelse.jdex.be.entries.LastName;
 import io.github.tryexceptelse.jdex.fe.gui.MainCont;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 import java.util.HashMap;
 
@@ -35,7 +37,32 @@ public class SearchHandler extends Handler{
      * closing the search mode.
      */
     public void searchButtonPress(){
-        // skeleton
+        toolBar = controller.toolBar;
+        searchButton = controller.searchButton;
+
+        //make search button invisible while searching
+        searchButton.setVisible(false);
+        // make search label
+        searchLabel = new Label("Search Last Names:");
+        // make search Field
+        searchField = new TextField();
+        searchField.setPromptText("Last Name");
+        searchField.setTooltip(new Tooltip(
+                "Last Name to search for in contacts"));
+        // make buttons
+        goButton = new Button("Find", new ImageView(new Image(getClass().
+                getResourceAsStream("/graphics/search.png"))));
+        goButton.setOnAction((event) -> goButtonPress());
+        goButton.setTooltip(new Tooltip("Find Matches"));
+        closeButton = new Button("Close", new ImageView(new Image(getClass().
+                getResourceAsStream("/graphics/cancel.png"))));
+        closeButton.setOnAction((event) -> closeButtonPress());
+        closeButton.setTooltip(new Tooltip("Close search bar"));
+        // add to toolbar
+        toolBar.getItems().add(searchLabel);
+        toolBar.getItems().add(searchField);
+        toolBar.getItems().add(goButton);
+        toolBar.getItems().add(closeButton);
     }
 
     /**

@@ -8,6 +8,9 @@ import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 
 import java.awt.Desktop;
@@ -116,17 +119,17 @@ public class TableHandler extends Handler{
      */
     private ContextMenu cellDropDownMenu(TableCell<Contact, String> cell){
         // create 'Add Contact' menu item
-        MenuItem addItem = new MenuItem("Add Contact");
+        MenuItem addItem = new MenuItem("Add Contact", icon("add_contact.png"));
         addItem.setOnAction(event -> controller.newContact());
         // create 'Create New Email' menu item
-        MenuItem sendEmail = new MenuItem("Create New Email");
+        MenuItem sendEmail = new MenuItem("Create New Email", icon("mail.png"));
         sendEmail.setOnAction(event ->
                 openEmailClientWithContact(cellContact(cell)));
         // create 'Find Address' menu item
-        MenuItem openInMap = new MenuItem("Open In Map");
+        MenuItem openInMap = new MenuItem("Open In Map", icon("marker.png"));
         openInMap.setOnAction(event -> openMapWithContact(cellContact(cell)));
         // create 'Delete' menu item
-        MenuItem deleteItem = new MenuItem("Delete");
+        MenuItem deleteItem = new MenuItem("Delete", icon("trash.png"));
         deleteItem.setOnAction(event -> deleteContact(cellContact(cell)));
         // add item(s)
         return new ContextMenu(addItem, sendEmail, openInMap, deleteItem);
@@ -134,11 +137,32 @@ public class TableHandler extends Handler{
 
     /**
      * Returns contact object from passed TableCell
+     * Helper method for cellDropDownMenu.
      * @param cell: TableCell object.
      * @return Contact object used to provide cell information.
      */
     private Contact cellContact(TableCell<Contact, String> cell){
         return (Contact)cell.getTableRow().getItem();
+    }
+
+    /**
+     * Returns ImageView object containing referenced image
+     * @param resourceAddress: String of resource path to image within
+     *                        graphics folder.
+     * @return ImageView containing referenced icon.
+     */
+    private ImageView icon(String resourceAddress){
+        return new ImageView(iconImage(resourceAddress));
+    }
+
+    /**
+     * Returns Image object containing referenced image
+     * @param path: String of path to image within graphics folder
+     * @return Image retrieved from path.
+     */
+    private Image iconImage(String path){
+        path = "/graphics/" + path;
+        return new Image(getClass().getResourceAsStream(path));
     }
 
     /**
@@ -184,6 +208,8 @@ public class TableHandler extends Handler{
     private void showEmailErrorDialogue(String msg){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Could not create email");
+        Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(iconImage("mail.png"));
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();
@@ -235,6 +261,8 @@ public class TableHandler extends Handler{
     private void showMapErrorDialogue(String msg){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Could not open in maps");
+        Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(iconImage("marker.png"));
         alert.setHeaderText(null);
         alert.setContentText(msg);
         alert.showAndWait();
@@ -273,6 +301,8 @@ public class TableHandler extends Handler{
     private void showEmptyRowDeletionDialogue(){
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Deleting empty row");
+        Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(iconImage("contact_32.png"));
         alert.setHeaderText(null);
         alert.setContentText("Empty rows cannot be deleted.");
         alert.showAndWait();
@@ -287,14 +317,16 @@ public class TableHandler extends Handler{
      */
     private boolean showConfirmDeleteDialogue(Contact contact){
         // make confirmation alert
-        Alert confirmDialogue = new Alert(Alert.AlertType.CONFIRMATION);
-        confirmDialogue.setTitle("Delete Contact?");
-        confirmDialogue.setHeaderText("Are you sure?");
-        confirmDialogue.setContentText(String.format(
+        Alert dialogue = new Alert(Alert.AlertType.CONFIRMATION);
+        dialogue.setTitle("Delete Contact?");
+        Stage stage = (Stage)dialogue.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(iconImage("contact_32.png"));
+        dialogue.setHeaderText("Are you sure?");
+        dialogue.setContentText(String.format(
                 "Remove %s %s from contacts?",
                 contact.getFirst(), contact.getLast()));
         // show alert
-        Optional<ButtonType> result = confirmDialogue.showAndWait();
+        Optional<ButtonType> result = dialogue.showAndWait();
         // if user response was to click 'ok' button, return true
         return result.isPresent() && result.get() == ButtonType.OK;
     }
