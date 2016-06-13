@@ -4,12 +4,13 @@ import io.github.tryexceptelse.jdex.be.Contact;
 import io.github.tryexceptelse.jdex.be.IRolodex;
 import io.github.tryexceptelse.jdex.fe.gui.MainCont;
 
+import static io.github.tryexceptelse.jdex.fe.gui.GuiUtil.icon;
+import static io.github.tryexceptelse.jdex.fe.gui.GuiUtil.iconImage;
+
 import javafx.beans.property.ReadOnlyObjectWrapper;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
 import javafx.util.Callback;
 
@@ -143,26 +144,6 @@ public class TableHandler extends Handler{
      */
     private Contact cellContact(TableCell<Contact, String> cell){
         return (Contact)cell.getTableRow().getItem();
-    }
-
-    /**
-     * Returns ImageView object containing referenced image
-     * @param resourceAddress: String of resource path to image within
-     *                        graphics folder.
-     * @return ImageView containing referenced icon.
-     */
-    private ImageView icon(String resourceAddress){
-        return new ImageView(iconImage(resourceAddress));
-    }
-
-    /**
-     * Returns Image object containing referenced image
-     * @param path: String of path to image within graphics folder
-     * @return Image retrieved from path.
-     */
-    private Image iconImage(String path){
-        path = "/graphics/" + path;
-        return new Image(getClass().getResourceAsStream(path));
     }
 
     /**

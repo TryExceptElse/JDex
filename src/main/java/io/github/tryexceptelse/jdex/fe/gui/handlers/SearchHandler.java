@@ -1,13 +1,16 @@
 package io.github.tryexceptelse.jdex.fe.gui.handlers;
 
-import io.github.tryexceptelse.jdex.be.entries.ContactEntry;
+import io.github.tryexceptelse.jdex.be.Contact;
 import io.github.tryexceptelse.jdex.be.entries.LastName;
 import io.github.tryexceptelse.jdex.fe.gui.MainCont;
-import javafx.scene.control.*;
-import javafx.scene.image.Image;
-import javafx.scene.image.ImageView;
 
-import java.util.HashMap;
+import static io.github.tryexceptelse.jdex.fe.gui.GuiUtil.icon;
+import static io.github.tryexceptelse.jdex.fe.gui.GuiUtil.iconImage;
+
+import javafx.scene.control.*;
+import javafx.stage.Stage;
+
+import java.util.ArrayList;
 
 /**
  * Handles user interaction with search button and related elements.
@@ -37,6 +40,11 @@ public class SearchHandler extends Handler{
      * closing the search mode.
      */
     public void searchButtonPress(){
+        // if there are no contacts to search, tell the user.
+        if (jDex.getRolodex().getContacts().size() == 0){
+            showNoContactsDialogue();
+            return;
+        }
         toolBar = controller.toolBar;
         searchButton = controller.searchButton;
 
@@ -50,12 +58,10 @@ public class SearchHandler extends Handler{
         searchField.setTooltip(new Tooltip(
                 "Last Name to search for in contacts"));
         // make buttons
-        goButton = new Button("Find", new ImageView(new Image(getClass().
-                getResourceAsStream("/graphics/search.png"))));
+        goButton = new Button("Find", icon("search.png"));
         goButton.setOnAction((event) -> goButtonPress());
         goButton.setTooltip(new Tooltip("Find Matches"));
-        closeButton = new Button("Close", new ImageView(new Image(getClass().
-                getResourceAsStream("/graphics/cancel.png"))));
+        closeButton = new Button("Close", icon("cancel.png"));
         closeButton.setOnAction((event) -> closeButtonPress());
         closeButton.setTooltip(new Tooltip("Close search bar"));
         // add to toolbar
@@ -71,9 +77,17 @@ public class SearchHandler extends Handler{
      */
     private void goButtonPress(){
         LastName lastNameToFind = new LastName(searchField.getText());
-        controller.setTableContents(jDex.getRolodex().search(lastNameToFind));
-        app.setMessage("Displaying contacts with last name: " +
-                lastNameToFind.getEntryString());
+        ArrayList<Contact> results = jDex.getRolodex().search(lastNameToFind);
+        if (results.size() > 0){
+            controller.setTableContents(results);
+            app.setMessage("Displaying contacts with last name: " +
+                    lastNameToFind.getEntryString());
+        } else {
+            app.setMessage(String.format("No results found for \'%s\'",
+                    lastNameToFind));
+            showNoResultsDialogue(lastNameToFind.toString());
+        }
+
     }
 
     /**
@@ -95,5 +109,32 @@ public class SearchHandler extends Handler{
         goButton = null;
         closeButton = null;
         searchButton.setVisible(true);
+    }
+
+    /**
+     * shows dialogue to user informing them that there are no contacts to
+     * be searched.
+     */
+    private void showNoContactsDialogue(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("No Contacts");
+        Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(iconImage("search.png"));
+        alert.setHeaderText(null);
+        alert.setContentText("There are no contacts to search.");
+        alert.showAndWait();
+    }
+
+    /**
+     * shows dialogue to user informing them that no contacts were found
+     */
+    private void showNoResultsDialogue(String searchString){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("No Contacts Found");
+        Stage stage = (Stage)alert.getDialogPane().getScene().getWindow();
+        stage.getIcons().add(iconImage("search.png"));
+        alert.setHeaderText(null);
+        alert.setContentText("No contacts with last name: " + searchString);
+        alert.showAndWait();
     }
 }

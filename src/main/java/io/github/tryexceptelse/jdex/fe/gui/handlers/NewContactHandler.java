@@ -2,6 +2,7 @@ package io.github.tryexceptelse.jdex.fe.gui.handlers;
 
 import io.github.tryexceptelse.jdex.be.IContact;
 import io.github.tryexceptelse.jdex.be.entries.*;
+import io.github.tryexceptelse.jdex.fe.gui.GuiUtil;
 import io.github.tryexceptelse.jdex.fe.gui.MainCont;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
@@ -177,6 +178,8 @@ public class NewContactHandler extends Handler{
      */
     private Stage createPopUpStage(GridPane newContactGrid){
         popUpStage = new Stage();
+        popUpStage.setTitle("Add Contact");
+        popUpStage.getIcons().add(GuiUtil.iconImage("add_contact.png"));
         popUpStage.initModality(Modality.APPLICATION_MODAL); // locks out main
             // ..window until this one has been closed.
         popUpStage.initOwner(app.getStage()); // sets this stage's owner.
