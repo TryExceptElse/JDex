@@ -18,6 +18,10 @@ public class AppWindow extends Application {
     private Stage stage;
     private MainCont controller;
 
+    private final String PROGRAM_NAME = "JDex";
+    private final String welcomeMessage = String.format("Welcome to %s, you have %s contacts.",
+            PROGRAM_NAME, activeJDex.getRolodex().getContacts().size());
+
     /**
      * Default constructor for AppWindow. Does nothing at all.
      * If this is not present, Application thread will crash.
@@ -53,8 +57,10 @@ public class AppWindow extends Application {
         controller.createHandlers(); // create handlers now that a reference to this instance exists
         Scene mainScene = new Scene(root, 1024, 512);
         primaryStage.setScene(mainScene); // primaryStage is the main application window.
-        primaryStage.setTitle("JDex");
+        primaryStage.setTitle(PROGRAM_NAME);
         primaryStage.show();
+        // set welcome message
+        setMessage(welcomeMessage);
     }
 
     /**

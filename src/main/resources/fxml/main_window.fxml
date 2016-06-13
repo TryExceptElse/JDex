@@ -18,7 +18,7 @@
             <items>
                 <Button fx:id="newButton" mnemonicParsing="false" onAction="#newContact" text="New">
                     <tooltip>
-                        <Tooltip text="Create new contacts list" />
+                        <Tooltip text="Create new contact" />
                     </tooltip>
                     <graphic>
                         <ImageView fitHeight="16.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
@@ -57,7 +57,7 @@
                AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <items>
             <Label fx:id="messageLabel" prefHeight="16.0" prefWidth="512.0"
-                   text="Placeholder Text" textAlignment="CENTER" />
+                   text="Placeholder Message" textAlignment="CENTER" />
          </items>
       </ToolBar>
     </children>
