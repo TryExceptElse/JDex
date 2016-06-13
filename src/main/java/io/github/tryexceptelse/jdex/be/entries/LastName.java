@@ -1,5 +1,7 @@
 package io.github.tryexceptelse.jdex.be.entries;
 
+import io.github.tryexceptelse.jdex.be.Contact;
+
 /**
  * Represents a Contact's last name.
  * Child of ContactEntry
@@ -40,8 +42,17 @@ public class LastName extends ContactEntry{
         }
         return false;
     }
-    public String toString(String entryString)
+    /**
+     *
+     * @param o: takes an object
+     * @return: will return false if it's any object not LastName, or lastName != to this
+     */
+    public boolean equals(Object o)
     {
-        return entryString;
+        if (o instanceof LastName)
+        {
+            return this.toString().equals(((LastName) o).toString());
+        }
+        return false;
     }
 }

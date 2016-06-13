@@ -198,7 +198,7 @@ public class Contact implements IContact, Serializable, Comparable
     {
         try  {
             Contact c2 = (Contact) o;
-            int retval = this.getLast().toString().compareTo(c2.getLast().toString());
+            int retval = this.getLast().toString().toUpperCase().compareTo(c2.getLast().toString().toUpperCase());
             if (retval != 0) {
                 return retval;
             }
