@@ -1,15 +1,17 @@
 package io.github.tryexceptelse.jdex.be;
-
 import io.github.tryexceptelse.jdex.be.entries.*;
 
+import java.io.InvalidObjectException;
+import java.util.Comparator;
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.Arrays;
 
 /**
  * One object of this class represents one contact to be added to the list. Each field takes its own object
  * and may have specialized methods.
  */
-public class Contact implements IContact, Serializable
+public class Contact implements IContact, Serializable, Comparable
 {
     private FirstName first;
     private LastName last;
@@ -30,7 +32,7 @@ public class Contact implements IContact, Serializable
      * @param first:      expects FirstName object representing the first name of the contact
      * @param last:       expect LastName object representing the last name of the contact
      * @param email:      expects EmailAddress object representing the email address of the contact
-     * @param streetAddr: expects EmailAddress object represnting the email address of the contact
+     * @param streetAddr: expects EmailAddress object representing the email address of the contact
      * @param phone:      expects PhoneNumber object representing the phone number of the contact
      * @param notes:      expects ContactNotes object representing notes for the contact
      */
@@ -187,5 +189,23 @@ public class Contact implements IContact, Serializable
     public void setNotes(ContactNotes notes)
     {
         this.notes = notes;
+    }
+    @Override
+    /**
+     * checks
+     */
+    public int compareTo(Object o)
+    {
+        try  {
+            Contact c2 = (Contact) o;
+            int retval = this.getLast().toString().compareTo(c2.getLast().toString());
+            if (retval != 0) {
+                return retval;
+            }
+            else {
+                return this.getFirst().toString().compareTo(c2.getFirst().toString());
+            }
+        }catch (ClassCastException i){}
+        return 0;
     }
 }

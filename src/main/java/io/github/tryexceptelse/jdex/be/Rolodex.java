@@ -1,11 +1,8 @@
 package io.github.tryexceptelse.jdex.be;
-
 import io.github.tryexceptelse.jdex.be.entries.*;
-
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Set;
+import java.util.*;
+import java.util.Comparator;
 
 /**
  * Stores and operates on Contacts
@@ -99,7 +96,6 @@ public class Rolodex implements IRolodex
         }
         throw new InvalidObjectException("contact could not be added because one or more of the fields was invalid");
     }
-
     /**
      *
      * @param searchedName: expects object of LastName class
@@ -107,8 +103,20 @@ public class Rolodex implements IRolodex
      */
     public ArrayList<Contact> search(LastName searchedName)
     {
-        // skeleton placeholder. ArrayList should be populated with matches here.
         return new ArrayList<>();
+    }
+    /*
+
+     */
+    public void sortContacts()
+    {
+        Collections.sort(contacts);
+        //Collections.sort(contacts, new Comparator<Contact>() {
+        //    @Override
+        //    public int compare(Contact o1, Contact o2) {
+        //        return o1.compareTo(o2);
+        //    }
+        //});
     }
 
     public void saveContacts()

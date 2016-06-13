@@ -5,13 +5,13 @@ package io.github.tryexceptelse.jdex.be.entries;
  * Child of ContactEntry
  */
 public class LastName extends ContactEntry{
+
     /**
      * Default constructor for LastName.
      */
     public LastName() {
         super();
     }
-
     /**
      * Constructor for LastName with passed string to be initialized with.
      * @param entryString: String to be stored as last name.
@@ -19,7 +19,6 @@ public class LastName extends ContactEntry{
     public LastName(String entryString) {
         super(entryString);
     }
-
     /**
      *
      * @param entryString: the String to be checked
@@ -40,5 +39,9 @@ public class LastName extends ContactEntry{
              }
         }
         return false;
+    }
+    public String toString(String entryString)
+    {
+        return entryString;
     }
 }
