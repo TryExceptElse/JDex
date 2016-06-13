@@ -56,7 +56,7 @@ public class Rolodex implements IRolodex
 
 
     /**
-     * adds contact to list being given Contact object to add
+     * adds contact to list being given Contact object to add to contacts, and sorts contacts by lastName then firstName
      * @param: contact contact you want to add to list
      * @return: the contact that was added, for ease of modification
      */
@@ -71,7 +71,7 @@ public class Rolodex implements IRolodex
         throw new InvalidObjectException("contact could not be added because one or more of the feilds was invalid");
     }
     /**
-     * adds contact to list, being given each  attribute.
+     * adds contact to list, being given each  attribute then sorts contacts by lastName then firstName
      * @param first:      expects FirstName object representing the first name of the contact
      * @param last:       expect LastName object representing the last name of the contact
      * @param email:      expects EmailAddress object representing the email address of the contact
@@ -107,18 +107,13 @@ public class Rolodex implements IRolodex
     {
         return new ArrayList<>();
     }
-    /*
 
+    /**
+     * Sorts contacts List by LastName, then FirstName using compareTo method defined in Contact class.
      */
     public void sortContacts()
     {
         Collections.sort(contacts);
-        //Collections.sort(contacts, new Comparator<Contact>() {
-        //    @Override
-        //    public int compare(Contact o1, Contact o2) {
-        //        return o1.compareTo(o2);
-        //    }
-        //});
     }
 
     public void saveContacts()
