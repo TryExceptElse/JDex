@@ -6,6 +6,7 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader; // to load the fxml file for scene
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 /**
@@ -17,6 +18,11 @@ public class AppWindow extends Application {
     private FXMLLoader loader;
     private Stage stage;
     private MainCont controller;
+
+    private final String PROGRAM_NAME = "JDex";
+    private final String PROGRAM_ICON_PATH = "/graphics/prog_icon.png";
+    private final String welcomeMessage =
+            "Welcome to %s, you have %s contacts.";
 
     /**
      * Default constructor for AppWindow. Does nothing at all.
@@ -44,7 +50,8 @@ public class AppWindow extends Application {
      */
     @Override
     public void start(Stage primaryStage) throws Exception{
-        loader = new FXMLLoader(getClass().getClassLoader().getResource("fxml/main_window.fxml"));
+        loader = new FXMLLoader(getClass().getClassLoader().
+                getResource("fxml/main_window.fxml"));
         stage = primaryStage;
         Parent root = loader.load(); // load fxml file.
         // set controller obj reference to that instantiated by loader when it loaded fxml file
@@ -53,14 +60,21 @@ public class AppWindow extends Application {
         controller.createHandlers(); // create handlers now that a reference to this instance exists
         Scene mainScene = new Scene(root, 1024, 512);
         primaryStage.setScene(mainScene); // primaryStage is the main application window.
-        primaryStage.setTitle("JDex");
+        primaryStage.setTitle(PROGRAM_NAME);
+        primaryStage.getIcons().add(new Image(getClass().
+                getResourceAsStream(PROGRAM_ICON_PATH)));
         primaryStage.show();
+        // set welcome message
+        setMessage(String.format(welcomeMessage,
+                PROGRAM_NAME, activeJDex.getRolodex().getContacts().size()));
     }
 
     /**
      * Set GUI feedback message to user.
-     * This message is visible at the bottom of the GUI window, beneath the table.
-     * This method is called by different gui handler objects to provide feedback to the user.
+     * This message is visible at the bottom of the GUI window,
+     * beneath the table.
+     * This method is called by different gui handler objects to
+     * provide feedback to the user.
      */
     public void setMessage(String msg){
         controller.setMessage(msg);
