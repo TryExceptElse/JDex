@@ -65,6 +65,7 @@ public class Rolodex implements IRolodex
         if (contact.checkParametersAreValid())
         {
             contacts.add(contact);
+            Collections.sort(contacts);
             return contact;
         }
         throw new InvalidObjectException("contact could not be added because one or more of the feilds was invalid");
@@ -92,6 +93,7 @@ public class Rolodex implements IRolodex
         if(contact.checkParametersAreValid())
         {
             contacts.add(contact);
+            Collections.sort(contacts);
             return  contact;
         }
         throw new InvalidObjectException("contact could not be added because one or more of the fields was invalid");
