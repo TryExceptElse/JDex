@@ -6,8 +6,9 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader; // to load the fxml file for scene
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
+
+import static io.github.tryexceptelse.jdex.fe.gui.GuiUtil.iconImage;
 
 /**
  * Application Window setup and layout
@@ -20,7 +21,7 @@ public class AppWindow extends Application {
     private MainCont controller;
 
     private final String PROGRAM_NAME = "JDex";
-    private final String PROGRAM_ICON_PATH = "/graphics/prog_icon.png";
+    private final String PROGRAM_ICON_PATH = "prog_icon.png";
     private final String welcomeMessage =
             "Welcome to %s, you have %s contacts.";
 
@@ -45,7 +46,7 @@ public class AppWindow extends Application {
 
     /**
      * startup method run when window is launched
-     * Unlike init, this method is called in the main application thread
+     * Unlike init, this method is called in the JavaFx application thread
      * @param primaryStage: Staging for window
      */
     @Override
@@ -61,12 +62,14 @@ public class AppWindow extends Application {
         Scene mainScene = new Scene(root, 1024, 512);
         primaryStage.setScene(mainScene); // primaryStage is the main application window.
         primaryStage.setTitle(PROGRAM_NAME);
-        primaryStage.getIcons().add(new Image(getClass().
-                getResourceAsStream(PROGRAM_ICON_PATH)));
+        primaryStage.getIcons().add(iconImage(PROGRAM_ICON_PATH));
         primaryStage.show();
         // set welcome message
         setMessage(String.format(welcomeMessage,
                 PROGRAM_NAME, activeJDex.getRolodex().getContacts().size()));
+        // set close event
+        primaryStage.setOnCloseRequest(event -> // on close request, save dex.
+                activeJDex.getRolodex().saveContacts());
     }
 
     /**
