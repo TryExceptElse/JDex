@@ -1,6 +1,5 @@
 package io.github.tryexceptelse.jdex.be.entries;
 
-import io.github.tryexceptelse.jdex.be.Contact;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 
@@ -83,6 +82,7 @@ public abstract class ContactEntry implements Serializable{
     public static String getStringFeedback(String string){
         return DEFAULT_INVALID_STRING_MESSAGE; // placeholder
     }
+
     /**
      * Gets string stored in entry.
      * @return String stored in entry.
