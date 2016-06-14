@@ -19,7 +19,9 @@ public class Gui implements Ui {
      * @param jdex: main class which is running the ui.
      */
     public Gui(JDex jdex){
-        // placeholder
+        this.jdex = jdex;
+        runtimeArgs = jdex.getRuntimeArgs();
+        appWindow = new AppWindow(jdex);
     }
 
     /**

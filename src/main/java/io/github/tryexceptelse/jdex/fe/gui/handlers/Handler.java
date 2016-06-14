@@ -22,6 +22,8 @@ abstract class Handler {
      * @param controller: Main Controller for GUI which created this object
      */
     Handler(MainCont controller){
-        // skeleton placeholder.
+        this.controller = controller;
+        app = controller.getApp();
+        jDex = app.getJDex();
     }
 }

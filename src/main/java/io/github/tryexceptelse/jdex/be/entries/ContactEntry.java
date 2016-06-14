@@ -1,9 +1,11 @@
 package io.github.tryexceptelse.jdex.be.entries;
 
 import java.io.Serializable;
+import java.lang.reflect.Method;
 
 /**
- * Contact Entry stored in Contact's entries.
+ * An entry in a Contact.
+ * Inherited from by more specific subclasses.
  */
 public abstract class ContactEntry implements Serializable{
     private static final String DEFAULT_INVALID_STRING_MESSAGE =
@@ -41,7 +43,16 @@ public abstract class ContactEntry implements Serializable{
      * @return boolean of whether string is a valid entry
      */
     public boolean checkHasValidString(){
-        return checkStringIsValid(entryString);
+        Class thisClass = this.getClass();
+        try{
+            Method checkMethod = thisClass.getMethod(
+                    "checkStringIsValid", String.class);
+            return (boolean)checkMethod.invoke(null, entryString);
+        } catch (Exception e){
+            System.out.println("Error: Could not access checkStringIsValid method");
+            e.printStackTrace();
+            return false;
+        }
     }
 
     /**
@@ -49,7 +60,7 @@ public abstract class ContactEntry implements Serializable{
      * @param string: String to be evaluated for validity.
      * @return boolean of whether passed string is valid.
      */
-    public boolean checkStringIsValid(String string){
+    public static boolean checkStringIsValid(String string){
         // children should replace this method with something useful.
         return true;
     }
@@ -68,10 +79,9 @@ public abstract class ContactEntry implements Serializable{
      * or any other feedback to be given about the string.
      * @return String feedback, or null, if nothing is to be displayed.
      */
-    public String getStringFeedback(String string){
+    public static String getStringFeedback(String string){
         return DEFAULT_INVALID_STRING_MESSAGE; // placeholder
     }
-
     /**
      * Gets string stored in entry.
      * @return String stored in entry.
