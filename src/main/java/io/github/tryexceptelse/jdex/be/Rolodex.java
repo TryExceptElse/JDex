@@ -145,7 +145,7 @@ public class Rolodex implements IRolodex
      * @return ArrayList with Contacts.
      */
     public ArrayList<Contact> loadContacts(){
-        return loadContacts(DEFAULT_FILE);
+        return loadContacts(contactsFile);
     }
 
     /**
