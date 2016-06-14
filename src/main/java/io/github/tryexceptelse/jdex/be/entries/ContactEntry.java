@@ -5,7 +5,8 @@ import java.io.Serializable;
 import java.lang.reflect.Method;
 
 /**
- * Contact Entry stored in Contact's entries Hashmap.
+ * An entry in a Contact.
+ * Inherited from by more specific subclasses.
  */
 public abstract class ContactEntry implements Serializable{
     private static final String DEFAULT_INVALID_STRING_MESSAGE =
@@ -81,6 +82,15 @@ public abstract class ContactEntry implements Serializable{
      */
     public static String getStringFeedback(String string){
         return DEFAULT_INVALID_STRING_MESSAGE; // placeholder
+    }
+
+    /**
+     * Compares two objects of ContactEntry, to determine equality.
+     * As represented here in ContactEntry, this is similar to default
+     * equals method for Strings, but is not case sensitive.
+     */
+    public boolean equals(Object obj){
+        return true; // placeholder
     }
 
     /**

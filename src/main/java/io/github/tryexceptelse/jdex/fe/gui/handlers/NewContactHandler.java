@@ -18,6 +18,32 @@ import java.lang.reflect.Method;
  * Handles user interaction with new contact button, and resulting fields.
  */
 public class NewContactHandler extends Handler{
+    // array of entry classes, in order used
+    private final Class[] entryClasses = new Class[]{
+                FirstName.class,
+                LastName.class,
+                EmailAddress.class,
+                StreetAddress.class,
+                PhoneNumber.class,
+                ContactNotes.class,
+    };
+    // array of prompt strings, in order used
+    private final String[] promptStrings = new String[]{
+                "Enter First Name",
+                "Enter Last Name",
+                "Enter Email Address",
+                "Enter Street Address",
+                "Enter Phone Number",
+                "Notes"
+    };
+    private final String[] labelStrings = new String[]{
+            "First Name:",
+            "Last Name:",
+            "Email Address:",
+            "Street Address:",
+            "Phone Number:",
+            "Notes:"
+    };
     private Stage popUpStage; // popup window stage. may be null if not active.
 
     /**
@@ -50,14 +76,10 @@ public class NewContactHandler extends Handler{
      * Helper-method for newContactButtonPress.
      */
     private Label[] createLabels(){
-        return new Label[]{
-                new Label("First Name:"),
-                new Label("Last Name:"),
-                new Label("Email Address:"),
-                new Label("Street Address:"),
-                new Label("Phone Number:"),
-                new Label("Notes:")
-        };
+        Label[] labels = new Label[labelStrings.length];
+        for (int i = 0; i < labels.length; i++) labels[i] =
+                new Label(labelStrings[i]);
+        return labels;
     }
 
     /**
@@ -78,9 +100,9 @@ public class NewContactHandler extends Handler{
             fields[i] = new TextField();
         }
         // create prompts
-        prompts = getPromptStrings();
+        prompts = promptStrings;
         // list entry classes in order used
-        Class[] entryClasses = getEntryClasses();
+        Class[] entryClasses = this.entryClasses;
         // assign prompts to fields
         for (int i = 0; i < prompts.length; i++){
             TextField field = fields[i];
@@ -109,24 +131,6 @@ public class NewContactHandler extends Handler{
                 ContactNotes.class,
         };
     }
-
-    /**
-     * Returns array of prompt strings in order used.
-     *
-     * Helper method to createFields
-     * @return String[] of strings used for field prompts.
-     */
-    private static String[] getPromptStrings(){
-        return new String[]{
-                "Enter First Name",
-                "Enter Last Name",
-                "Enter Email Address",
-                "Enter Street Address",
-                "Enter Phone Number",
-                "Notes"
-        };
-    }
-
 
     /**
      * Creates 'Create' button which when pressed creates and adds a contact
@@ -250,8 +254,9 @@ public class NewContactHandler extends Handler{
      *                         string is valid, and what message if any should
      *                         be displayed.
      */
-    private void checkFieldEntry(TextField field,
-                                 Class contactEntryClass) {
+    private void checkFieldEntry(TextField field, Class contactEntryClass) {
+        // assert contactEntryClass inherits from ContactEntry
+        assert ContactEntry.class.isAssignableFrom(contactEntryClass);
         String entryString = field.getText();
         // get feedback string to be displayed as tool-tip
         String entryFeedback = getEntryFeedback(contactEntryClass, entryString);
@@ -274,6 +279,8 @@ public class NewContactHandler extends Handler{
     private String getEntryFeedback(Class entryClass, String entryString){
         Method getStringFeedbackMethod; // method to return string feedback
         String entryFeedback;
+        // assert entryClass inherits from ContactEntry
+        assert ContactEntry.class.isAssignableFrom(entryClass);
         try {
             getStringFeedbackMethod = entryClass.getMethod(
                     "getStringFeedback", String.class); //name, argument type
@@ -296,6 +303,8 @@ public class NewContactHandler extends Handler{
     private boolean checkStringIsValid(Class entryClass, String entryString){
         Method checkValidityMethod;
         boolean returnBool;
+        // Assert entryClass inherits from ContactEntry
+        assert ContactEntry.class.isAssignableFrom(entryClass);
         try{
             checkValidityMethod = entryClass.getMethod(
                     "checkStringIsValid", String.class); // name, arg type
@@ -341,8 +350,8 @@ public class NewContactHandler extends Handler{
             IContact newContact = jDex.getRolodex().
                     addContact(first, last, email, streetAddr, phone, notes);
             app.setMessage(String.format("created new contact for %s, %s",
-                    newContact.getLast().getEntryString(),
-                    newContact.getFirst().getEntryString()));
+                    newContact.getLast().getEntryString(), newContact.getFirst()
+                            .getEntryString()));
             controller.refreshTable();
             cleanUp();
         } catch (InvalidObjectException e){
@@ -351,7 +360,7 @@ public class NewContactHandler extends Handler{
             assert fields.length == getEntryClasses().length;
             for (int i = 0; i < fields.length; i++){
                 TextField field = fields[i];
-                Class entryClass = getEntryClasses()[i];
+                Class entryClass = entryClasses[i];
                 checkFieldEntry(field, entryClass);
             }
         }
