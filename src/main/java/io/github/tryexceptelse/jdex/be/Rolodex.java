@@ -33,7 +33,8 @@ public class Rolodex implements IRolodex
      */
     public Rolodex(File contactsFile)
     {
-        contacts = new ArrayList<>(); //placeholder until we implement Load function.
+        this.contactsFile = contactsFile;
+        contacts = loadContacts();
     }
 
     /**
@@ -57,8 +58,8 @@ public class Rolodex implements IRolodex
 
     /**
      * adds contact to list being given Contact object to add to contacts, and sorts contacts by lastName then firstName
-     * @param: contact contact you want to add to list
-     * @return: the contact that was added, for ease of modification
+     * @param contact: contact you want to add to list
+     * @return the contact that was added, for ease of modification
      */
     public Contact addContact(Contact contact)throws InvalidObjectException
     {
@@ -78,7 +79,7 @@ public class Rolodex implements IRolodex
      * @param streetAddr: expects EmailAddress object represnting the email address of the contact
      * @param phone:      expects PhoneNumber object representing the phone number of the contact
      * @param notes:      expects ContactNotes object representing notes for the contact
-     * @return: will return the contact that was added, for ease of modification
+     * @return will return the contact that was added, for ease of modification
      */
     public Contact addContact(FirstName first,
                               LastName last,
@@ -101,7 +102,7 @@ public class Rolodex implements IRolodex
     /**
      *
      * @param searchedName: expects object of LastName class
-     * @return: will return an ArrayList containing all objects with a last name that match the given LastName.
+     * @return will return an ArrayList containing all objects with a last name that match the given LastName.
      */
     public ArrayList<Contact> search(LastName searchedName)
     {
@@ -139,12 +140,21 @@ public class Rolodex implements IRolodex
             IOE.printStackTrace();
         }
     }
+    /**
+     * Default load contacts method
+     * @return ArrayList with Contacts.
+     */
+    public ArrayList<Contact> loadContacts(){
+        return loadContacts(DEFAULT_FILE);
+    }
 
     /**
      * Loads contacts from contactsFile
-     * @return: ArrayList with Contacts
+     * @param contactsFile: File object representing file in which
+     *                    contacts are stored.
+     * @return ArrayList with Contacts.
      */
-    public ArrayList<Contact> loadContacts(){
+    public ArrayList<Contact> loadContacts(File contactsFile){
         ArrayList<Contact> newContacts = new ArrayList<>();
         try
         {

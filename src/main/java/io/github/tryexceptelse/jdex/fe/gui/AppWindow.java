@@ -68,8 +68,10 @@ public class AppWindow extends Application {
         setMessage(String.format(welcomeMessage,
                 PROGRAM_NAME, activeJDex.getRolodex().getContacts().size()));
         // set close event
-        primaryStage.setOnCloseRequest(event -> // on close request, save dex.
-                activeJDex.getRolodex().saveContacts());
+        primaryStage.setOnCloseRequest(event -> {// on close request, save dex.
+            activeJDex.getRolodex().saveContacts();
+            stage.close();
+        });
     }
 
     /**
