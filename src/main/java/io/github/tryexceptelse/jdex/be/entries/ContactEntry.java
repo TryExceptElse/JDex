@@ -1,6 +1,5 @@
 package io.github.tryexceptelse.jdex.be.entries;
 
-import io.github.tryexceptelse.jdex.be.Contact;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 
@@ -82,15 +81,6 @@ public abstract class ContactEntry implements Serializable{
      */
     public static String getStringFeedback(String string){
         return DEFAULT_INVALID_STRING_MESSAGE; // placeholder
-    }
-
-    /**
-     * Compares two objects of ContactEntry, to determine equality.
-     * As represented here in ContactEntry, this is similar to default
-     * equals method for Strings, but is not case sensitive.
-     */
-    public boolean equals(Object obj){
-        return true; // placeholder
     }
 
     /**
