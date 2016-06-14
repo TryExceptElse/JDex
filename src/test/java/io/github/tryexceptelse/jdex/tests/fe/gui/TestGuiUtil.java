@@ -2,8 +2,6 @@ package io.github.tryexceptelse.jdex.tests.fe.gui;
 
 import io.github.tryexceptelse.jdex.fe.gui.GuiUtil;
 
-import com.sun.istack.internal.NotNull;
-
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.paint.Color;
@@ -48,8 +46,14 @@ public class TestGuiUtil extends TestCase {
     /**
      * defining an image comparison method here for lack of a better idea
      */
-    private void assertImagesEqual(@NotNull Image imageA,@NotNull Image imageB,
+    private void assertImagesEqual(Image imageA,Image imageB,
                                    double moe) {
+        if (imageA == null) throw new AssertionFailedError(
+                "first image passed was 'null' "
+        );
+        if (imageB == null) throw new AssertionFailedError(
+                "second image passed was null"
+        );
         if (imageA.getWidth() != imageB.getWidth()) throw new
                 AssertionFailedError(
                 String.format("Images had different widths: A: %s, B: %s",

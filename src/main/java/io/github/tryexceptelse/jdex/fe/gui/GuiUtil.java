@@ -3,7 +3,6 @@ package io.github.tryexceptelse.jdex.fe.gui;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-import java.io.ObjectInput;
 import java.lang.reflect.Method;
 
 /**
