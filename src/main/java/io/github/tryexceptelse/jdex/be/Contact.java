@@ -192,7 +192,10 @@ public class Contact implements IContact, Serializable, Comparable
     }
     @Override
     /**
-     * checks
+     * Compares first lastName then firstName of the two Contacts to determine which order they should be in
+     * alphabetically. This method is called by Rolodex.Sort to sort the contacts ArrayList.
+     * @param o: takes passed object to compare to
+     * @return : integar. Positive if the passed object should be sorted higher, Negative if it should be lower.
      */
     public int compareTo(Object o)
     {
@@ -203,9 +206,8 @@ public class Contact implements IContact, Serializable, Comparable
                 return retval;
             }
             else {
-                return this.getFirst().toString().compareTo(c2.getFirst().toString());
+                return this.getFirst().toString().toUpperCase().compareTo(c2.getFirst().toString().toUpperCase());
             }
-        }catch (ClassCastException i){}
-        return 0;
+        }catch (ClassCastException i){return 0;}
     }
 }
