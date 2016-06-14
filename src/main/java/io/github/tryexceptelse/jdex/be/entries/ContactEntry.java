@@ -1,6 +1,5 @@
 package io.github.tryexceptelse.jdex.be.entries;
 
-import io.github.tryexceptelse.jdex.be.Contact;
 import java.io.Serializable;
 import java.lang.reflect.Method;
 
