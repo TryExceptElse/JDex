@@ -133,7 +133,7 @@ public class MainCont implements Initializable {
      * @return ArrayList of Contacts
      */
     public ArrayList<Contact> getTableContents(){
-        return new ArrayList<>();
+        return table.getTableContents();
     }
 
     /**
@@ -142,6 +142,13 @@ public class MainCont implements Initializable {
      */
     public void setTableContents(ArrayList<Contact> contacts){
         table.setTableContents(contacts);
+    }
+
+    /** Returns string representation of MainCont
+     * @return String rep.
+     */
+    public String toString(){
+        return "[Main Controller instance]";
     }
 
 }

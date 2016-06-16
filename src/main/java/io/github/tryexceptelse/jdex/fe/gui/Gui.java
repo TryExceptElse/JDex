@@ -54,4 +54,11 @@ public class Gui implements Ui {
     public AppWindow getAppWindow() {
         return appWindow;
     }
+
+    /** Brief string representation
+     * @return String rep.
+     */
+    public String toString(){
+        return "[Gui instance]";
+    }
 }

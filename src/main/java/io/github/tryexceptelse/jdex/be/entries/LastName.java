@@ -51,7 +51,7 @@ public class LastName extends ContactEntry{
     {
         if (o instanceof LastName)
         {
-            return this.toString().equals(((LastName) o).toString());
+            return this.toString().equals(o.toString());
         }
         return false;
     }

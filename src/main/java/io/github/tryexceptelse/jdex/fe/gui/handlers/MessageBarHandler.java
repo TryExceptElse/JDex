@@ -37,4 +37,12 @@ public class MessageBarHandler extends Handler{
     public String getMsg(){
         return messageLabel.getText();
     }
+
+    /**
+     * Returns string representation with current msg
+     * @return String rep.
+     */
+    public String toString(){
+        return String.format("[MessageBarHandler w/ msg:\"%s\"]", getMsg());
+    }
 }
