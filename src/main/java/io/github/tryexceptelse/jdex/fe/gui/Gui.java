@@ -16,12 +16,12 @@ public class Gui implements Ui {
     /**
      * Constructor for Gui, should leave object in a state ready to be called
      * This method initializes an AppWindow
-     * @param jdex: main class which is running the ui.
+     * @param jDex: main class which is running the ui.
      */
-    public Gui(JDex jdex){
-        this.jdex = jdex;
-        runtimeArgs = jdex.getRuntimeArgs();
-        appWindow = new AppWindow(jdex);
+    public Gui(JDex jDex){
+        this.jdex = jDex;
+        runtimeArgs = jDex.getRuntimeArgs();
+        appWindow = new AppWindow(jDex);
     }
 
     /**
@@ -32,5 +32,26 @@ public class Gui implements Ui {
         // placeholder.
         // this may actually not be needed for GUI depending on final
         // implementation, but it is required for a potential TUI.
+    }
+
+    /** Gets runtime args passed to GUI on creation.
+     * @return String[] args.
+     */
+    public String[] getRuntimeArgs() {
+        return runtimeArgs;
+    }
+
+    /** Gets main JDex object which owns this GUI.
+     * @return owning JDex.
+     */
+    public JDex getJDex() {
+        return jdex;
+    }
+
+    /** Gets application window object.
+     * @return AppWindow object owned by Gui.
+     */
+    public AppWindow getAppWindow() {
+        return appWindow;
     }
 }

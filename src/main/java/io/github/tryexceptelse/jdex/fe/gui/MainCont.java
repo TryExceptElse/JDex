@@ -129,21 +129,6 @@ public class MainCont implements Initializable {
     }
 
     /**
-     * returns an array of the table columns.
-     * @return TableColumn[] TableHandler Columns.
-     */
-    public TableColumn[] getTableColumns(){
-        return new TableColumn[]{
-                firstColumn,
-                lastColumn,
-                emailColumn,
-                streetAddrColumn,
-                phoneColumn,
-                notesColumn
-        };
-    }
-
-    /**
      * Gets current table contents
      * @return ArrayList of Contacts
      */

@@ -3,8 +3,6 @@ package io.github.tryexceptelse.jdex.fe.gui.handlers;
 import io.github.tryexceptelse.jdex.fe.gui.MainCont;
 import javafx.scene.control.Label;
 
-import java.sql.Time;
-
 /**
  * Message bar handler to provide feedback to user on results of their
  * actions, etc
@@ -14,8 +12,6 @@ import java.sql.Time;
  */
 public class MessageBarHandler extends Handler{
     private Label messageLabel;
-    private Time timeMessageSet; // time at which current message was set
-    // this is used for determining when to return to default message bar.
 
     /**
      * Message Bar Handler constructor.
@@ -23,8 +19,6 @@ public class MessageBarHandler extends Handler{
      */
     public MessageBarHandler(MainCont controller){
         super(controller);
-        this.app = controller.getApp();
-        jDex = app.getJDex();
         messageLabel = controller.messageLabel;
     }
 

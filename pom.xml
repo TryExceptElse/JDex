@@ -75,5 +75,12 @@
       <artifactId>mockito-all</artifactId>
       <version>1.9.5</version>
     </dependency>
+    <!-- JavaFx testing-->
+    <dependency>
+      <groupId>org.testfx</groupId>
+      <artifactId>testfx-junit</artifactId>
+      <version>4.0.4-alpha</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 </project>
