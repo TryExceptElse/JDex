@@ -9,7 +9,8 @@ import java.lang.reflect.Method;
  */
 public abstract class ContactEntry implements Serializable{
     private static final String DEFAULT_INVALID_STRING_MESSAGE =
-            "String does not meet entry requirements";
+            "Please enter a data that meets entry requirements. Figure it out, they make sense. If you put a few " +
+                    "thousand@ signs, you'll break email address.";
     private String entryString;
 
     /**
@@ -82,6 +83,7 @@ public abstract class ContactEntry implements Serializable{
     public static String getStringFeedback(String string){
         return DEFAULT_INVALID_STRING_MESSAGE; // placeholder
     }
+
     /**
      * Gets string stored in entry.
      * @return String stored in entry.

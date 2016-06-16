@@ -6,7 +6,9 @@ import io.github.tryexceptelse.jdex.fe.gui.Gui;
 import io.github.tryexceptelse.jdex.be.IRolodex;
 import io.github.tryexceptelse.jdex.be.Rolodex;
 
+
 import java.io.File;
+
 
 /**
  * Main program class. holds settings, Ui, and Contact Rolodex objects,
@@ -101,7 +103,7 @@ public class JDex {
    * @return Ui: User Interface object
    */
   private Ui buildUi() {
-    return new Gui(this); //placeholder.
+    return new Gui(this);
   }
 
   /**
