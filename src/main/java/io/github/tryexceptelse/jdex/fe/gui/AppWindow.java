@@ -107,4 +107,12 @@ public class AppWindow extends Application {
     public JDex getJDex(){
         return activeJDex;
     }
+
+    /**
+     * returns string rep.
+     * @return String representation.
+     */
+    public String toString(){
+        return "[JDex AppWindow]";
+    }
 }

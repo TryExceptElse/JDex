@@ -33,4 +33,11 @@ public class Gui implements Ui {
         // this may actually not be needed for GUI depending on final
         // implementation, but it is required for a potential TUI.
     }
+
+    /** Brief string representation
+     * @return String rep.
+     */
+    public String toString(){
+        return "[Gui instance]";
+    }
 }

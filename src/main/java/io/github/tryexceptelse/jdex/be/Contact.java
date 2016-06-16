@@ -76,11 +76,7 @@ public class Contact implements IContact, Serializable, Comparable
         {
             return false;
         }
-        if (!notes.checkHasValidString())
-        {
-            return false;
-        }
-        return true;
+        return notes.checkHasValidString();
     }
 
     /**

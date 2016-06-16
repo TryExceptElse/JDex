@@ -22,7 +22,7 @@ public class JDex {
 
   private String[] runtimeArgs;
   private Ui ui; // User interface object
-  private IRolodex rolodex; // should be imported from backend once available
+  private IRolodex rolodex; // rolodex of contacts.
   private final File contactsFile = buildContactsFile();
 
   /**
