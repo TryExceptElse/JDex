@@ -8,18 +8,18 @@ import io.github.tryexceptelse.jdex.be.entries.*;
  */
 public interface IContact
 {
-    public FirstName getFirst();
-    public void setFirst(FirstName first);
-    public LastName getLast();
-    public void setLast(LastName last);
-    public EmailAddress getEmail();
-    public void setEmail(EmailAddress email);
-    public StreetAddress getStreetAddr();
-    public void setStreetAddr(StreetAddress streetAddr);
-    public PhoneNumber getPhone();
-    public void setPhone(PhoneNumber phone);
-    public ContactNotes getNotes();
-    public void setNotes(ContactNotes notes);
-    public boolean checkParametersAreValid();
+    FirstName getFirst();
+    void setFirst(FirstName first);
+    LastName getLast();
+    void setLast(LastName last);
+    EmailAddress getEmail();
+    void setEmail(EmailAddress email);
+    StreetAddress getStreetAddr();
+    void setStreetAddr(StreetAddress streetAddr);
+    PhoneNumber getPhone();
+    void setPhone(PhoneNumber phone);
+    ContactNotes getNotes();
+    void setNotes(ContactNotes notes);
+    boolean checkParametersAreValid();
 
 }

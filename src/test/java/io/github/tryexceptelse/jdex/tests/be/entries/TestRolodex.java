@@ -53,6 +53,11 @@ public class TestRolodex extends TestCase
 
         assertEquals(expectedSearchResults, test_contacts.search(new LastName ("Glassey")));
     }
+
+    /**
+     * Checks the sortContacts method, some contacts have the same last name.
+     * @throws InvalidObjectException If the object is not a member of the Contact class will throw error.
+     */
     public void testSortContacts() throws InvalidObjectException
     {
         Rolodex test_contacts = new Rolodex();

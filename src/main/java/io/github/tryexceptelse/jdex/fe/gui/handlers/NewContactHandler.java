@@ -377,4 +377,15 @@ public class NewContactHandler extends Handler{
         popUpStage = null;
     }
 
+    /**
+     * provides brief string rep including information about state of obj.
+     * @return String representation.
+     */
+    public String toString(){
+        String state;
+        if (popUpStage == null) state = "Active";
+        else state = "Inactive";
+        return String.format("[NewContactHandler: %s", state);
+    }
+
 }

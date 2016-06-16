@@ -76,11 +76,7 @@ public class Contact implements IContact, Serializable, Comparable
         {
             return false;
         }
-        if (!notes.checkHasValidString())
-        {
-            return false;
-        }
-        return true;
+        return notes.checkHasValidString();
     }
 
     /**
@@ -209,5 +205,20 @@ public class Contact implements IContact, Serializable, Comparable
                 return this.getFirst().toString().toUpperCase().compareTo(c2.getFirst().toString().toUpperCase());
             }
         }catch (ClassCastException i){return 0;}
+    }
+
+    /**
+     * @return: a String containing all of the fields in the Contact object
+     */
+    public String toString()
+    {
+        return String.join(", ", new String[]{
+                getFirst().toString(),
+                getLast().toString(),
+                getEmail().toString(),
+                getStreetAddr().toString(),
+                getPhone().toString(),
+                getNotes().toString(),
+        });
     }
 }

@@ -2,6 +2,9 @@ package io.github.tryexceptelse.jdex.fe.gui;
 
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import sun.reflect.generics.reflectiveObjects.NotImplementedException;
+
+import java.lang.reflect.Method;
 
 import java.lang.reflect.Method;
 
@@ -11,6 +14,15 @@ import java.lang.reflect.Method;
  * repeated each time they are needed, or placed in an arbitrary file
  */
 public class GuiUtil {
+    /** Constructor raises NotImplementedError because it only contains
+     * static methods and should never be initialized.
+     */
+    public GuiUtil(){
+        System.out.println("GuiUtil only contains static methods" +
+                "and should not be initialized.");
+        throw new NotImplementedException();
+    }
+
     /**
      * Returns ImageView object containing referenced image
      * @param resourceAddress: String of resource path to image within

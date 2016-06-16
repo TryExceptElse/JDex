@@ -1,22 +1,14 @@
 
 package io.github.tryexceptelse.jdex;
 
-import io.github.tryexceptelse.jdex.be.Contact;
-import io.github.tryexceptelse.jdex.be.entries.*;
 import io.github.tryexceptelse.jdex.fe.Ui;
-import io.github.tryexceptelse.jdex.fe.gui.AppWindow;
 import io.github.tryexceptelse.jdex.fe.gui.Gui;
 import io.github.tryexceptelse.jdex.be.IRolodex;
 import io.github.tryexceptelse.jdex.be.Rolodex;
-import io.github.tryexceptelse.jdex.fe.gui.MainCont;
-import io.github.tryexceptelse.jdex.fe.gui.handlers.MessageBarHandler;
-import io.github.tryexceptelse.jdex.fe.gui.handlers.NewContactHandler;
-import io.github.tryexceptelse.jdex.fe.gui.handlers.SearchHandler;
-import io.github.tryexceptelse.jdex.fe.gui.handlers.TableHandler;
+
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
+
 
 /**
  * Main program class. holds settings, Ui, and Contact Rolodex objects,
@@ -30,7 +22,7 @@ public class JDex {
 
   private String[] runtimeArgs;
   private Ui ui; // User interface object
-  private IRolodex rolodex; // should be imported from backend once available
+  private IRolodex rolodex; // rolodex of contacts.
   private final File contactsFile = buildContactsFile();
 
   /**
@@ -111,7 +103,7 @@ public class JDex {
    * @return Ui: User Interface object
    */
   private Ui buildUi() {
-    return new Gui(this); //placeholder.
+    return new Gui(this);
   }
 
   /**

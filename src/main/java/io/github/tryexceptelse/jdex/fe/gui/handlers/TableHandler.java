@@ -336,4 +336,13 @@ public class TableHandler extends Handler{
     public ArrayList<Contact> getTableContents(){
         return tableContents;
     }
+
+    /** Provides brief string information on object state
+     * @return String representation
+     */
+    public String toString(){
+        return String.format("[TableHandler w/%s displayed contacts]",
+                tableContents.size());
+    }
+
 }

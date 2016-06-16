@@ -137,4 +137,14 @@ public class SearchHandler extends Handler{
         alert.setContentText("No contacts with last name: " + searchString);
         alert.showAndWait();
     }
+
+    /** Returns string representation of String handler.
+     * @return String rep.
+     */
+    public String toString(){
+        String state;
+        if (searchField == null) state = "Active";
+        else state = "Inactive";
+        return String.format("[SearchHandler: %s]", state);
+    }
 }
