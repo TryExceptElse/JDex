@@ -25,12 +25,12 @@ public interface IRolodex
      * @param phone:      expects PhoneNumber object representing the phone number of the contact
      * @param notes:      expects ContactNotes object representing notes for the contact
      */
-    public Contact addContact(FirstName first,
-                              LastName last,
-                              EmailAddress email,
-                              StreetAddress streetAddr,
-                              PhoneNumber phone,
-                              ContactNotes notes) throws InvalidObjectException;
+    Contact addContact(FirstName first,
+                       LastName last,
+                       EmailAddress email,
+                       StreetAddress streetAddr,
+                       PhoneNumber phone,
+                       ContactNotes notes) throws InvalidObjectException;
 
 
     /**
@@ -38,7 +38,7 @@ public interface IRolodex
      * @param searchedName: expects object of LastName class
      * @return: will return an ArrayList contating all objects with a last name that match the given LastName.
      */
-    public ArrayList<Contact> search(LastName searchedName);
+    ArrayList<Contact> search(LastName searchedName);
 
     /**
      * Serializes contacts list and saves it to drive
