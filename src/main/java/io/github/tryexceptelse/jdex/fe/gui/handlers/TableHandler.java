@@ -115,7 +115,7 @@ public class TableHandler extends Handler{
     /**
      * Creates, populates and formats a right click drop-down
      * menu for the user.
-     * Called when the user right clicks on a cell.
+     * Called by setCellFactories
      * @param cell: TableCell which has been right-clicked by the user.
      */
     private ContextMenu cellDropDownMenu(TableCell<Contact, String> cell){
@@ -153,6 +153,7 @@ public class TableHandler extends Handler{
     private void openEmailClientWithContact(Contact contact){
         if (!Desktop.isDesktopSupported()){
             showEmailErrorDialogue("Could not connect to desktop");
+            return;
         }
         if (contact == null) {
             showEmailErrorDialogue("Empty contact row was selected");
